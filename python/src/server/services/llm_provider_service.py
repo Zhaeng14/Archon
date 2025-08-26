@@ -119,7 +119,25 @@ async def get_llm_client(provider: str | None = None, use_embedding_provider: bo
             logger.info("Google Gemini client created successfully")
 
         else:
-            raise ValueError(f"Unsupported LLM provider: {provider_name}")
+            # Support any OpenAI-compatible provider
+            logger.info(f"Creating OpenAI-compatible client for provider: {provider_name}")
+            
+            if not api_key and provider_name != "ollama":
+                raise ValueError(f"{provider_name} API key not found")
+            
+            # For unknown providers, use them as OpenAI-compatible with custom base_url
+            client_params = {}
+            if api_key:
+                client_params["api_key"] = api_key
+            else:
+                # For providers like Ollama that don't need real API keys
+                client_params["api_key"] = "not-needed"
+            
+            if base_url:
+                client_params["base_url"] = base_url
+            
+            client = openai.AsyncOpenAI(**client_params)
+            logger.info(f"OpenAI-compatible client created for {provider_name} with base_url: {base_url}")
 
         yield client
 

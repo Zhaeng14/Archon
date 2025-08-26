@@ -261,13 +261,29 @@ We enforce code quality through automated linting and type checking:
 
 ## MCP Tools Available
 
-When connected to Cursor/Windsurf:
+When connected to Claude Code, Cursor, or Windsurf via MCP server at http://localhost:8051/mcp:
 
-- `archon:perform_rag_query` - Search knowledge base
-- `archon:search_code_examples` - Find code snippets
-- `archon:manage_project` - Project operations
-- `archon:manage_task` - Task management
-- `archon:get_available_sources` - List knowledge sources
+- `perform_rag_query` - Search knowledge base with your embedded content
+- `search_code_examples` - Find relevant code snippets and examples
+- `create_project` / `list_projects` / `get_project` - Project management operations
+- `create_task` / `list_tasks` / `update_task` - Task management and tracking
+- `get_available_sources` - List all knowledge sources in the system
+- `health_check` - Check MCP server health status
+
+### MCP Connection for Claude Code
+
+To configure MCP in Claude Code:
+```bash
+claude mcp add --transport http archon http://localhost:8051/mcp
+```
+
+If connection fails, try with session ID:
+```bash
+# Get new session ID from logs
+docker-compose logs --tail=3 archon-mcp | findstr "session ID"
+# Add with session ID
+claude mcp add --transport http archon http://localhost:8051/mcp --header "mcp-session-id: [SESSION_ID]"
+```
 
 ## Important Notes
 

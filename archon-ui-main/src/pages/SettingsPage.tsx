@@ -5,20 +5,20 @@ import {
   ChevronDown,
   ChevronUp,
   Palette,
-  Key,
   Brain,
   Code,
   Activity,
   FileCode,
   Bug,
+  Database,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useToast } from "../contexts/ToastContext";
 import { useSettings } from "../contexts/SettingsContext";
 import { useStaggeredEntrance } from "../hooks/useStaggeredEntrance";
 import { FeaturesSection } from "../components/settings/FeaturesSection";
-import { APIKeysSection } from "../components/settings/APIKeysSection";
-import { RAGSettings } from "../components/settings/RAGSettings";
+import { FlexibleRAGSettings } from "../components/settings/FlexibleRAGSettings";
+import { ModelProviderManager } from "../components/settings/ModelProviderManager";
 import { CodeExtractionSettings } from "../components/settings/CodeExtractionSettings";
 import { TestStatus } from "../components/settings/TestStatus";
 import { IDEGlobalRules } from "../components/settings/IDEGlobalRules";
@@ -168,13 +168,13 @@ export const SettingsPage = () => {
         <div className="space-y-6">
           <motion.div variants={itemVariants}>
             <CollapsibleSettingsCard
-              title="API Keys"
-              icon={Key}
-              accentColor="pink"
-              storageKey="api-keys"
-              defaultExpanded={true}
+              title="Model Providers"
+              icon={Database}
+              accentColor="blue"
+              storageKey="model-providers"
+              defaultExpanded={false}
             >
-              <APIKeysSection />
+              <ModelProviderManager />
             </CollapsibleSettingsCard>
           </motion.div>
           <motion.div variants={itemVariants}>
@@ -185,7 +185,7 @@ export const SettingsPage = () => {
               storageKey="rag-settings"
               defaultExpanded={true}
             >
-              <RAGSettings
+              <FlexibleRAGSettings
                 ragSettings={ragSettings}
                 setRagSettings={setRagSettings}
               />

@@ -25,6 +25,7 @@ from .api_routes.coverage_api import router as coverage_router
 from .api_routes.internal_api import router as internal_router
 from .api_routes.knowledge_api import router as knowledge_router
 from .api_routes.mcp_api import router as mcp_router
+from .api_routes.model_provider_api import router as model_provider_router
 from .api_routes.projects_api import router as projects_router
 
 # Import Socket.IO handlers to ensure they're registered
@@ -210,6 +211,7 @@ app.include_router(mcp_router)
 # app.include_router(mcp_client_router)  # Removed - not part of new architecture
 app.include_router(knowledge_router)
 app.include_router(projects_router)
+app.include_router(model_provider_router)
 app.include_router(tests_router)
 app.include_router(agent_chat_router)
 app.include_router(internal_router)

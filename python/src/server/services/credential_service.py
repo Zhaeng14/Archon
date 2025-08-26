@@ -394,7 +394,7 @@ class CredentialService:
     # Provider Management Methods
     async def get_active_provider(self, service_type: str = "llm") -> dict[str, Any]:
         """
-        Get the currently active provider configuration.
+        Get the currently active provider configuration using the new flexible model provider system.
 
         Args:
             service_type: Either 'llm' or 'embedding'
@@ -403,10 +403,42 @@ class CredentialService:
             Dict with provider, api_key, base_url, and models
         """
         try:
-            # Get RAG strategy settings (where UI saves provider selection)
+            # Import here to avoid circular import
+            from .model_provider_service import ModelProviderService
+            
+            model_provider_service = ModelProviderService()
+            
+            # Get selected models from RAG settings
             rag_settings = await self.get_credentials_by_category("rag_strategy")
-
-            # Get the selected provider
+            
+            if service_type == "embedding":
+                # Use the dedicated method to get selected embedding model
+                provider, model = await model_provider_service.get_selected_embedding_model()
+                if provider and model:
+                    return {
+                        "provider": provider.name,
+                        "api_key": provider.api_key,
+                        "base_url": provider.base_url,
+                        "chat_model": "",
+                        "embedding_model": model.model_id,
+                    }
+            
+            else:  # service_type == "llm"
+                # Use the dedicated method to get selected chat model
+                provider, model = await model_provider_service.get_selected_chat_model()
+                if provider and model:
+                    return {
+                        "provider": provider.name,
+                        "api_key": provider.api_key,
+                        "base_url": provider.base_url,
+                        "chat_model": model.model_id,
+                        "embedding_model": "",
+                    }
+            
+            # Fallback to old system if new system doesn't have selections
+            logger.warning(f"No selected model found for {service_type}, falling back to old provider system")
+            
+            # Get the selected provider from old system
             provider = rag_settings.get("LLM_PROVIDER", "openai")
 
             # Get API key for this provider
