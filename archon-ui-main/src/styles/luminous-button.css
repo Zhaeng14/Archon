@@ -8,6 +8,6 @@
     transform: scale(1.05) translateY(-30%);
   }
 }
-.luminous-button-glow {
+.luminous-button-glow-disabled {
   animation: pulse-glow 3s ease-in-out infinite;
 }

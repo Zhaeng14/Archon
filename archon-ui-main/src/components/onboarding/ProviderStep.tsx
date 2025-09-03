@@ -97,7 +97,7 @@ export const ProviderStep = ({ onSaved, onSkip }: ProviderStepProps) => {
             { value: "google", label: "Google Gemini" },
             { value: "ollama", label: "Ollama (Local)" },
           ]}
-          accentColor="green"
+          accentColor="neutral"
         />
         <p className="mt-2 text-sm text-gray-600 dark:text-zinc-400">
           {provider === "openai" &&
@@ -119,7 +119,7 @@ export const ProviderStep = ({ onSaved, onSkip }: ProviderStepProps) => {
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               placeholder="sk-..."
-              accentColor="green"
+              accentColor="neutral"
               icon={<Key className="w-4 h-4" />}
             />
             <p className="mt-2 text-sm text-gray-600 dark:text-zinc-400">

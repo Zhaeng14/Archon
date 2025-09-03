@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Workflow, Navigation } from 'lucide-react';
 import { SectionProps } from '../types/prp.types';
 import { formatKey } from '../utils/formatters';
@@ -56,7 +56,7 @@ export const FlowSection: React.FC<SectionProps> = ({
       {Object.entries(data).map(([flowName, flow]) => (
         <div 
           key={flowName}
-          className="p-4 rounded-lg bg-gradient-to-br from-purple-50/50 to-pink-50/50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800"
+          className="p-4 rounded-lg bg-card from-purple-50/50 to-pink-50/50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800"
         >
           <h4 className="font-semibold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
             <Workflow className="w-5 h-5 text-purple-500" />

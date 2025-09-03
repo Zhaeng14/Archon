@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useMemo } from 'react';
+﻿import { useEffect, useState, useRef, useMemo } from 'react';
 import { Search, Grid, Plus, Upload, Link as LinkIcon, Brain, Filter, BoxIcon, List, BookOpen, CheckSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from '../components/ui/Card';
@@ -75,7 +75,7 @@ export const KnowledgeBasePage = () => {
   // Single consolidated loading function - only loads data, no filtering
   const loadKnowledgeItems = async () => {
     const startTime = Date.now();
-    console.log('📊 Loading all knowledge items from API...');
+    console.log('馃搳 Loading all knowledge items from API...');
     
     try {
       setLoading(true);
@@ -86,7 +86,7 @@ export const KnowledgeBasePage = () => {
       });
       
       const loadTime = Date.now() - startTime;
-      console.log(`📊 API request completed in ${loadTime}ms, loaded ${response.items.length} items`);
+      console.log(`馃搳 API request completed in ${loadTime}ms, loaded ${response.items.length} items`);
       
       setKnowledgeItems(response.items);
       setTotalItems(response.total);
@@ -101,13 +101,13 @@ export const KnowledgeBasePage = () => {
 
   // Initialize knowledge items on mount - load via REST API immediately
   useEffect(() => {
-    console.log('🚀 KnowledgeBasePage: Loading knowledge items via REST API');
+    console.log('馃殌 KnowledgeBasePage: Loading knowledge items via REST API');
     
     // Load items immediately via REST API
     loadKnowledgeItems();
     
     return () => {
-      console.log('🧹 KnowledgeBasePage: Cleaning up');
+      console.log('馃Ч KnowledgeBasePage: Cleaning up');
       // Cleanup all crawl progress connections on unmount
       crawlProgressService.disconnect();
     };
@@ -169,7 +169,7 @@ export const KnowledgeBasePage = () => {
                   // Reconnect to Socket.IO room
                   await crawlProgressService.streamProgressEnhanced(progressId, {
                     onMessage: (data: CrawlProgressData) => {
-                      console.log('🔄 Reconnected crawl progress update:', data);
+                      console.log('馃攧 Reconnected crawl progress update:', data);
                       if (data.status === 'completed') {
                         handleProgressComplete(data);
                       } else if (data.error || data.status === 'error') {
@@ -197,7 +197,7 @@ export const KnowledgeBasePage = () => {
                     },
                     onError: (error: Error | Event) => {
                       const errorMessage = error instanceof Error ? error.message : 'Connection error';
-                      console.error('❌ Reconnection error:', errorMessage);
+                      console.error('鉂?Reconnection error:', errorMessage);
                       handleProgressError(errorMessage, progressId);
                     }
                   }, {
@@ -407,7 +407,7 @@ export const KnowledgeBasePage = () => {
 
   const handleRefreshItem = async (sourceId: string) => {
     try {
-      console.log('🔄 Refreshing knowledge item:', sourceId);
+      console.log('馃攧 Refreshing knowledge item:', sourceId);
       
       // Get the item being refreshed to show its URL in progress
       const item = knowledgeItems.find(k => k.source_id === sourceId);
@@ -415,7 +415,7 @@ export const KnowledgeBasePage = () => {
       
       // Call the refresh API
       const response = await knowledgeBaseService.refreshKnowledgeItem(sourceId);
-      console.log('🔄 Refresh response:', response);
+      console.log('馃攧 Refresh response:', response);
       
       if (response.progressId) {
         // Add progress tracking
@@ -457,7 +457,7 @@ export const KnowledgeBasePage = () => {
         // Connect to crawl progress WebSocket
         await crawlProgressService.streamProgressEnhanced(response.progressId, {
           onMessage: (data: CrawlProgressData) => {
-            console.log('🔄 Refresh progress update:', data);
+            console.log('馃攧 Refresh progress update:', data);
             if (data.status === 'completed') {
               handleProgressComplete(data);
             } else if (data.error || data.status === 'error') {
@@ -483,11 +483,11 @@ export const KnowledgeBasePage = () => {
             }
           },
           onStateChange: (state: any) => {
-            console.log('🔄 Refresh state change:', state);
+            console.log('馃攧 Refresh state change:', state);
           },
           onError: (error: Error | Event) => {
             const errorMessage = error instanceof Error ? error.message : 'Connection error';
-            console.error('❌ Refresh error:', errorMessage);
+            console.error('鉂?Refresh error:', errorMessage);
             handleProgressError(errorMessage, response.progressId);
           }
         }, {
@@ -890,13 +890,13 @@ export const KnowledgeBasePage = () => {
       {/* Header with animation - stays static when changing views */}
       <motion.div className="flex justify-between items-center mb-8" initial="hidden" animate="visible" variants={headerContainerVariants}>
         <motion.h1 className="text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-3" variants={titleVariants}>
-          <BookOpen className="w-7 h-7 text-green-500 filter drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
+          <BookOpen className="w-7 h-7 text-green-500 filter " />
           Knowledge Base
         </motion.h1>
         <motion.div className="flex items-center gap-4" variants={headerItemVariants}>
           {/* Search Bar */}
           <div className="relative">
-            <Input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search knowledge base..." accentColor="purple" icon={<Search className="w-4 h-4" />} />
+            <Input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search knowledge base..." accentColor="neutral" icon={<Search className="w-4 h-4" />} />
           </div>
           {/* Type Filter */}
           <div className="flex items-center bg-gray-50 dark:bg-black border border-gray-200 dark:border-zinc-900 rounded-md overflow-hidden">
@@ -923,14 +923,14 @@ export const KnowledgeBasePage = () => {
           <Button 
             onClick={toggleSelectionMode} 
             variant={isSelectionMode ? "secondary" : "ghost"} 
-            accentColor="blue"
+            accentColor="neutral"
             className={isSelectionMode ? "bg-blue-500/10 border-blue-500/40" : ""}
           >
             <CheckSquare className="w-4 h-4 mr-2 inline" />
             <span>{isSelectionMode ? 'Cancel' : 'Select'}</span>
           </Button>
           {/* Add Button */}
-          <Button onClick={handleAddKnowledge} variant="primary" accentColor="purple" className="shadow-lg shadow-purple-500/20">
+          <Button onClick={handleAddKnowledge} variant="primary" accentColor="neutral" className="shadow-lg shadow-purple-500/20">
             <Plus className="w-4 h-4 mr-2 inline" />
             <span>Knowledge</span>
           </Button>
@@ -945,7 +945,7 @@ export const KnowledgeBasePage = () => {
             exit={{ opacity: 0, y: -20 }}
             className="mb-6"
           >
-            <Card className="p-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-500/20">
+            <Card className="p-4  bg-muted border-border">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -955,7 +955,7 @@ export const KnowledgeBasePage = () => {
                     onClick={selectAll}
                     variant="ghost"
                     size="sm"
-                    accentColor="blue"
+                    accentColor="neutral"
                   >
                     Select All
                   </Button>
@@ -973,7 +973,7 @@ export const KnowledgeBasePage = () => {
                     onClick={() => setIsGroupModalOpen(true)}
                     variant="secondary"
                     size="sm"
-                    accentColor="blue"
+                    accentColor="neutral"
                   >
                     Create Group
                   </Button>
@@ -981,7 +981,7 @@ export const KnowledgeBasePage = () => {
                     onClick={deleteSelectedItems}
                     variant="secondary"
                     size="sm"
-                    accentColor="pink"
+                    accentColor="neutral"
                   >
                     Delete Selected
                   </Button>
@@ -1403,7 +1403,7 @@ const AddKnowledgeModal = ({
           <div className="flex gap-4">
             <label className={`
                 flex-1 p-4 rounded-md border cursor-pointer transition flex items-center justify-center gap-2
-                ${knowledgeType === 'technical' ? 'border-blue-500 text-blue-600 dark:text-blue-500 bg-blue-50 dark:bg-blue-500/5' : 'border-gray-200 dark:border-zinc-900 text-gray-500 dark:text-zinc-400 hover:border-blue-300 dark:hover:border-blue-500/30'}
+                ${knowledgeType === 'technical' ? 'border-gray-500 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/30' : 'border-gray-200 dark:border-zinc-700 text-gray-500 dark:text-zinc-400 hover:border-gray-400 dark:hover:border-gray-500'}
               `}>
               <input type="radio" name="knowledgeType" value="technical" checked={knowledgeType === 'technical'} onChange={() => setKnowledgeType('technical')} className="sr-only" />
               <BoxIcon className="w-5 h-5" />
@@ -1411,7 +1411,7 @@ const AddKnowledgeModal = ({
             </label>
             <label className={`
                 flex-1 p-4 rounded-md border cursor-pointer transition flex items-center justify-center gap-2
-                ${knowledgeType === 'business' ? 'border-purple-500 text-purple-600 dark:text-purple-500 bg-purple-50 dark:bg-purple-500/5' : 'border-gray-200 dark:border-zinc-900 text-gray-500 dark:text-zinc-400 hover:border-purple-300 dark:hover:border-purple-500/30'}
+                ${knowledgeType === 'business' ? 'border-gray-500 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/30' : 'border-gray-200 dark:border-zinc-700 text-gray-500 dark:text-zinc-400 hover:border-gray-400 dark:hover:border-gray-500'}
               `}>
               <input type="radio" name="knowledgeType" value="business" checked={knowledgeType === 'business'} onChange={() => setKnowledgeType('business')} className="sr-only" />
               <Brain className="w-5 h-5" />
@@ -1421,11 +1421,11 @@ const AddKnowledgeModal = ({
         </div>
         {/* Source Type Selection */}
         <div className="flex gap-4 mb-6">
-          <button onClick={() => setMethod('url')} className={`flex-1 p-4 rounded-md border ${method === 'url' ? 'border-blue-500 text-blue-600 dark:text-blue-500 bg-blue-50 dark:bg-blue-500/5' : 'border-gray-200 dark:border-zinc-900 text-gray-500 dark:text-zinc-400 hover:border-blue-300 dark:hover:border-blue-500/30'} transition flex items-center justify-center gap-2`}>
+          <button onClick={() => setMethod('url')} className={`flex-1 p-4 rounded-md border ${method === 'url' ? 'border-gray-500 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/30' : 'border-gray-200 dark:border-zinc-700 text-gray-500 dark:text-zinc-400 hover:border-gray-400 dark:hover:border-gray-500'} transition flex items-center justify-center gap-2`}>
             <LinkIcon className="w-4 h-4" />
             <span>URL / Website</span>
           </button>
-          <button onClick={() => setMethod('file')} className={`flex-1 p-4 rounded-md border ${method === 'file' ? 'border-pink-500 text-pink-600 dark:text-pink-500 bg-pink-50 dark:bg-pink-500/5' : 'border-gray-200 dark:border-zinc-900 text-gray-500 dark:text-zinc-400 hover:border-pink-300 dark:hover:border-pink-500/30'} transition flex items-center justify-center gap-2`}>
+          <button onClick={() => setMethod('file')} className={`flex-1 p-4 rounded-md border ${method === 'file' ? 'border-gray-500 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/30' : 'border-gray-200 dark:border-zinc-700 text-gray-500 dark:text-zinc-400 hover:border-gray-400 dark:hover:border-gray-500'} transition flex items-center justify-center gap-2`}>
             <Upload className="w-4 h-4" />
             <span>Upload File</span>
           </button>
@@ -1438,11 +1438,11 @@ const AddKnowledgeModal = ({
               value={url} 
               onChange={e => setUrl(e.target.value)} 
               placeholder="https://example.com or example.com" 
-              accentColor="blue" 
+              accentColor="neutral" 
             />
             {url && !url.startsWith('http://') && !url.startsWith('https://') && (
-              <p className="text-amber-600 dark:text-amber-400 text-sm mt-1">
-                ℹ️ Will automatically add https:// prefix
+              <p className="text-muted-foreground text-sm mt-1">
+                鈩癸笍 Will automatically add https:// prefix
               </p>
             )}
           </div>}
@@ -1463,10 +1463,9 @@ const AddKnowledgeModal = ({
               <label 
                 htmlFor="file-upload"
                 className="flex items-center justify-center gap-3 w-full p-6 rounded-md border-2 border-dashed cursor-pointer transition-all duration-300
-                  bg-blue-500/10 hover:bg-blue-500/20 
-                  border-blue-500/30 hover:border-blue-500/50
-                  text-blue-600 dark:text-blue-400
-                  hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]
+                  bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700/50
+                  border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500
+                  text-gray-600 dark:text-gray-300
                   backdrop-blur-sm"
               >
                 <Upload className="w-6 h-6" />
@@ -1526,18 +1525,21 @@ const AddKnowledgeModal = ({
             setTags([...tags, newTag.trim()]);
             setNewTag('');
           }
-        }} placeholder="Add tags..." accentColor="purple" />
+        }} placeholder="Add tags..." accentColor="neutral" />
         </div>
         {/* Action Buttons */}
         <div className="flex justify-end gap-4">
           <Button onClick={onClose} variant="ghost" disabled={loading}>
             Cancel
           </Button>
-          <Button onClick={handleSubmit} variant="primary" accentColor={method === 'url' ? 'blue' : 'pink'} disabled={loading}>
+          <Button onClick={handleSubmit} variant="primary" accentColor="neutral" disabled={loading}>
             {loading ? 'Adding...' : 'Add Source'}
           </Button>
         </div>
       </Card>
     </div>;
 };
+
+
+
 

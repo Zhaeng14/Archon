@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Rocket, Code, Briefcase, Users, FileText, X, Plus, Clipboard } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
 
@@ -44,7 +44,7 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
       case 'prp': return 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30';
       case 'technical': return 'bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/30';
       case 'business': return 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30';
-      case 'meeting_notes': return 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/30';
+      case 'meeting_notes': return 'bg-muted text-foreground border-border';
       default: return 'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/30';
     }
   };
@@ -57,7 +57,7 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
     // Visual feedback
     const button = e.currentTarget;
     const originalHTML = button.innerHTML;
-    button.innerHTML = '<div class="flex items-center gap-1"><span class="w-3 h-3 text-green-500">✓</span><span class="text-green-500 text-xs">Copied</span></div>';
+    button.innerHTML = '<div class="flex items-center gap-1"><span class="w-3 h-3 text-green-500">鉁?/span><span class="text-green-500 text-xs">Copied</span></div>';
     setTimeout(() => {
       button.innerHTML = originalHTML;
     }, 2000);

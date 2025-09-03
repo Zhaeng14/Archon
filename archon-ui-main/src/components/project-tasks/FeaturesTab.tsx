@@ -281,7 +281,7 @@ export const FeaturesTab = ({ project }: FeaturesTabProps) => {
 
   const saveToDatabase = async (nodesToSave = nodes, edgesToSave = edges) => {
     if (!project?.id) {
-      console.error('‚ùå No project ID available for saving features');
+      console.error('‚ù?No project ID available for saving features');
       return;
     }
 
@@ -291,10 +291,10 @@ export const FeaturesTab = ({ project }: FeaturesTabProps) => {
       await projectService.updateProject(project.id, {
         features: nodesToSave
       });
-      console.log('‚úÖ Features saved successfully');
+      console.log('‚ú?Features saved successfully');
       setHasUnsavedChanges(false);
     } catch (error) {
-      console.error('‚ùå Failed to save features:', error);
+      console.error('‚ù?Failed to save features:', error);
       throw error;
     } finally {
       setIsSaving(false);
@@ -363,7 +363,7 @@ export const FeaturesTab = ({ project }: FeaturesTabProps) => {
     event.stopPropagation();
     
     if (!project?.id) {
-      console.error('‚ùå No project ID available for deleting node');
+      console.error('‚ù?No project ID available for deleting node');
       return;
     }
 
@@ -375,7 +375,7 @@ export const FeaturesTab = ({ project }: FeaturesTabProps) => {
   const confirmDelete = useCallback(async () => {
     if (!nodeToDelete) return;
 
-    console.log('üóëÔ∏è Deleting node:', nodeToDelete);
+    console.log('üóëÔ∏?Deleting node:', nodeToDelete);
 
     try {
       // Remove node from UI
@@ -397,7 +397,7 @@ export const FeaturesTab = ({ project }: FeaturesTabProps) => {
       setShowDeleteConfirm(false);
       setNodeToDelete(null);
     } catch (error) {
-      console.error('‚ùå Failed to delete node:', error);
+      console.error('‚ù?Failed to delete node:', error);
       // Revert UI changes on error
       setNodes(nodes);
       setEdges(edges);
@@ -812,3 +812,4 @@ const EditFeatureModal = ({
     </div>
   );
 };
+

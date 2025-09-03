@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { Terminal, RefreshCw, Play, Square, Clock, CheckCircle, XCircle, FileText, ChevronUp, ChevronDown, BarChart } from 'lucide-react';
 // Card component not used but preserved for future use
 // import { Card } from '../ui/Card';
@@ -98,39 +98,31 @@ export const TestStatus = () => {
 
   const parseTestOutput = (log: string): TestResult | null => {
     // Parse Python test output (pytest format)
-    if (log.includes('::') && (log.includes('PASSED') || log.includes('FAILED') || log.includes('SKIPPED'))) {
-      const parts = log.split('::');
+    if (log.includes("::") && (log.includes("PASSED") || log.includes("FAILED") || log.includes("SKIPPED"))) {
+      const parts = log.split("::");
       if (parts.length >= 2) {
-        const name = parts[parts.length - 1].split(' ')[0];
-        const status = log.includes('PASSED') ? 'passed' : 
-                     log.includes('FAILED') ? 'failed' : 'skipped';
-        
-        // Extract duration if present
-        const durationMatch = log.match(/\[([\d.]+)s\]/);
+        const name = parts[parts.length - 1].split(" ")[0];
+        const status = log.includes('PASSED') ? 'passed' : log.includes('FAILED') ? 'failed' : 'skipped';
+        // Extract duration if present, like: [0.12s]
+        const durationMatch = log.match(/\[([\\d.]+)s\]/);
         const duration = durationMatch ? parseFloat(durationMatch[1]) : undefined;
-        
         return { name, status, duration };
       }
     }
 
-    // Parse React test output (vitest format)
-    if (log.includes('✓') || log.includes('✕') || log.includes('○')) {
-      const testNameMatch = log.match(/[✓✕○]\s+(.+?)(?:\s+\([\d.]+s\))?$/);
-      if (testNameMatch) {
-        const name = testNameMatch[1];
-        const status = log.includes('✓') ? 'passed' : 
-                     log.includes('✕') ? 'failed' : 'skipped';
-        
-        const durationMatch = log.match(/\(([\d.]+)s\)/);
-        const duration = durationMatch ? parseFloat(durationMatch[1]) : undefined;
-        
+    // Parse React test output (vitest format): ✓ pass, ✕ fail, ○ skipped
+    if (/[\u2713\u2715\u25CB]/.test(log)) {
+      const match = log.match(/[\u2713\u2715\u25CB]\s+(.+?)(?:\s+\(([\u2713\u2715\u25CB]?[\d.]+)s\))?$/) || log.match(/[\u2713\u2715\u25CB]\s+(.+?)(?:\s+\(([\d.]+)s\))?$/);
+      if (match) {
+        const name = match[1];
+        const status: TestResult['status'] = /\\u2713/.test(log) ? 'passed' : (/\\u2715/.test(log) ? 'failed' : 'skipped');
+        const duration = match[2] ? parseFloat(match[2]) : undefined;
         return { name, status, duration };
       }
     }
 
     return null;
   };
-
   const updateSummaryFromLogs = (logs: string[]) => {
     // Extract summary from test output
     const summaryLine = logs.find(log => 
@@ -391,8 +383,8 @@ export const TestStatus = () => {
 
   const formatLogLine = (log: string, index: number) => {
     let textColor = 'text-gray-700 dark:text-gray-300';
-    if (log.includes('PASS') || log.includes('✓') || log.includes('passed')) textColor = 'text-green-600 dark:text-green-400';
-    if (log.includes('FAIL') || log.includes('✕') || log.includes('failed')) textColor = 'text-red-600 dark:text-red-400';
+    if (log.includes('PASS') || /\\u2713/.test(log) || log.includes('passed')) textColor = 'text-green-600 dark:text-green-400';
+    if (log.includes('FAIL') || /\\u2715/.test(log) || log.includes('failed')) textColor = 'text-red-600 dark:text-red-400';
     if (log.includes('Error:') || log.includes('ERROR')) textColor = 'text-red-600 dark:text-red-400';
     if (log.includes('Warning:') || log.includes('WARN')) textColor = 'text-yellow-600 dark:text-yellow-400';
     if (log.includes('Status:') || log.includes('Duration:') || log.includes('Execution ID:')) textColor = 'text-cyan-600 dark:text-cyan-400';
@@ -632,7 +624,7 @@ export const TestStatus = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between cursor-pointer" onClick={() => setIsCollapsed(!isCollapsed)}>
         <div className="flex items-center gap-2">
-          <Terminal className="w-5 h-5 text-orange-500 dark:text-orange-400 filter drop-shadow-[0_0_8px_rgba(251,146,60,0.8)]" />
+          <Terminal className="w-5 h-5 text-orange-500 dark:text-orange-400 filter " />
           <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Archon Unit Tests</h2>
           <div className={`transform transition-transform duration-300 ${isCollapsed ? '' : 'rotate-180'}`}>
             <ChevronDown className="w-5 h-5 text-gray-500 dark:text-gray-400" />
@@ -702,3 +694,7 @@ export const TestStatus = () => {
     </div>
   );
 };
+
+
+
+

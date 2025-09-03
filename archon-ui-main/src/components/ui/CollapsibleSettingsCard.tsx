@@ -6,7 +6,7 @@ import { LucideIcon } from 'lucide-react';
 interface CollapsibleSettingsCardProps {
   title: string;
   icon: LucideIcon;
-  accentColor?: 'purple' | 'green' | 'pink' | 'blue' | 'cyan' | 'orange';
+  accentColor?: 'neutral' | 'purple' | 'green' | 'pink' | 'blue' | 'cyan' | 'orange';
   children: React.ReactNode;
   defaultExpanded?: boolean;
   storageKey?: string;
@@ -15,7 +15,7 @@ interface CollapsibleSettingsCardProps {
 export const CollapsibleSettingsCard: React.FC<CollapsibleSettingsCardProps> = ({
   title,
   icon: Icon,
-  accentColor = 'blue',
+  accentColor = 'neutral',
   children,
   defaultExpanded = true,
   storageKey
@@ -54,12 +54,13 @@ export const CollapsibleSettingsCard: React.FC<CollapsibleSettingsCardProps> = (
   };
 
   const iconColorMap = {
-    purple: 'text-purple-500 filter drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]',
-    green: 'text-green-500 filter drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]',
-    pink: 'text-pink-500 filter drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]',
-    blue: 'text-blue-500 filter drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]',
-    cyan: 'text-cyan-500 filter drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]',
-    orange: 'text-orange-500 filter drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]'
+    neutral: 'text-foreground/70',
+    purple: 'text-gray-600 dark:text-gray-400',
+    green: 'text-gray-600 dark:text-gray-400', 
+    pink: 'text-gray-600 dark:text-gray-400',
+    blue: 'text-gray-600 dark:text-gray-400',
+    cyan: 'text-gray-600 dark:text-gray-400',
+    orange: 'text-gray-600 dark:text-gray-400'
   };
 
   return (
@@ -76,7 +77,7 @@ export const CollapsibleSettingsCard: React.FC<CollapsibleSettingsCardProps> = (
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
-            <Icon className={`mr-2 ${iconColorMap[accentColor]} size-5`} />
+            <Icon className={`mr-2 ${(iconColorMap as any)[accentColor] ?? iconColorMap.neutral} size-5`} />
             <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
               {title}
             </h2>
@@ -84,7 +85,7 @@ export const CollapsibleSettingsCard: React.FC<CollapsibleSettingsCardProps> = (
           <PowerButton
             isOn={isExpanded}
             onClick={handleToggle}
-            color={accentColor}
+            color={'neutral'}
             size={36}
           />
         </div>
@@ -126,3 +127,4 @@ export const CollapsibleSettingsCard: React.FC<CollapsibleSettingsCardProps> = (
     </motion.div>
   );
 };
+

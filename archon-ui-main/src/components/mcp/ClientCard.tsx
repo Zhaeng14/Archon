@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+﻿import React, { useEffect, useState, useRef } from 'react';
 import { Server, Activity, Clock, ChevronRight, Hammer, Settings, Trash2, Plug, PlugZap } from 'lucide-react';
 import { Client } from './MCPClients';
 import { mcpClientService } from '../../services/mcpClientService';
@@ -32,21 +32,21 @@ export const ClientCard = ({
   const statusConfig = {
     online: {
       color: isArchonClient ? 'archon' : 'cyan',
-      glow: isArchonClient ? 'shadow-[0_0_25px_rgba(59,130,246,0.7),0_0_15px_rgba(168,85,247,0.5)] dark:shadow-[0_0_35px_rgba(59,130,246,0.8),0_0_20px_rgba(168,85,247,0.7)]' : 'shadow-[0_0_15px_rgba(34,211,238,0.5)] dark:shadow-[0_0_20px_rgba(34,211,238,0.7)]',
+      glow: isArchonClient ? 'shadow-none dark:shadow-none' : 'shadow-none dark:shadow-none',
       border: isArchonClient ? 'border-blue-400/60 dark:border-blue-500/60' : 'border-cyan-400/50 dark:border-cyan-500/40',
       badge: isArchonClient ? 'bg-blue-500/30 text-blue-400 border-blue-500/40' : 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
       pulse: isArchonClient ? 'bg-blue-400' : 'bg-cyan-400'
     },
     offline: {
       color: 'gray',
-      glow: 'shadow-[0_0_15px_rgba(156,163,175,0.3)] dark:shadow-[0_0_15px_rgba(156,163,175,0.4)]',
+      glow: 'shadow-none dark:shadow-none',
       border: 'border-gray-400/30 dark:border-gray-600/30',
       badge: 'bg-gray-500/20 text-gray-400 border-gray-500/30',
       pulse: 'bg-gray-400'
     },
     error: {
       color: 'pink',
-      glow: 'shadow-[0_0_15px_rgba(236,72,153,0.5)] dark:shadow-[0_0_20px_rgba(236,72,153,0.7)]',
+      glow: 'shadow-none dark:shadow-none',
       border: 'border-pink-400/50 dark:border-pink-500/40',
       badge: 'bg-pink-500/20 text-pink-400 border-pink-500/30',
       pulse: 'bg-pink-400'
@@ -272,14 +272,14 @@ export const ClientCard = ({
             className={`absolute top-3 right-3 p-1.5 rounded-full ${
               client.status === 'offline' 
                 ? 'bg-green-200/50 dark:bg-green-900/50 hover:bg-green-300/50 dark:hover:bg-green-800/50' 
-                : 'bg-orange-200/50 dark:bg-orange-900/50 hover:bg-orange-300/50 dark:hover:bg-orange-800/50'
+                : 'bg-muted dark:bg-muted hover:bg-muted dark:hover:bg-muted
             } transition-colors transform hover:scale-110 transition-transform duration-200 z-20 ${isConnecting ? 'animate-pulse' : ''}`} 
             title={client.status === 'offline' ? 'Connect client' : 'Disconnect client'}
           >
             {client.status === 'offline' ? (
               <Plug className="w-4 h-4 text-green-600 dark:text-green-400" />
             ) : (
-              <PlugZap className="w-4 h-4 text-orange-600 dark:text-orange-400" />
+              <PlugZap className="w-4 h-4 text-foreground/70" />
             )}
           </button>
 
@@ -312,7 +312,7 @@ export const ClientCard = ({
           <div className="flex items-start">
             {isArchonClient ? (
               <div className="p-3 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 mr-3 relative pulse-soft">
-                <img src="/logo-neon.png" alt="Archon" className="w-6 h-6 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] animate-glow-pulse" />
+                <img src="/favicon.png" alt="Archon" className="w-6 h-6  " />
                 <div className="absolute inset-0 rounded-lg bg-blue-500/10 animate-pulse opacity-60"></div>
               </div>
             ) : (
@@ -407,14 +407,14 @@ export const ClientCard = ({
             className={`absolute top-3 right-3 p-1.5 rounded-full ${
               client.status === 'offline' 
                 ? 'bg-green-200/50 dark:bg-green-900/50 hover:bg-green-300/50 dark:hover:bg-green-800/50' 
-                : 'bg-orange-200/50 dark:bg-orange-900/50 hover:bg-orange-300/50 dark:hover:bg-orange-800/50'
+                : 'bg-muted dark:bg-muted hover:bg-muted dark:hover:bg-muted
             } transition-colors transform hover:scale-110 transition-transform duration-200 z-20 ${isConnecting ? 'animate-pulse' : ''}`} 
             title={client.status === 'offline' ? 'Connect client' : 'Disconnect client'}
           >
             {client.status === 'offline' ? (
               <Plug className="w-4 h-4 text-green-600 dark:text-green-400" />
             ) : (
-              <PlugZap className="w-4 h-4 text-orange-600 dark:text-orange-400" />
+              <PlugZap className="w-4 h-4 text-foreground/70" />
             )}
           </button>
 
@@ -506,3 +506,4 @@ export const ClientCard = ({
     </div>
   );
 };
+

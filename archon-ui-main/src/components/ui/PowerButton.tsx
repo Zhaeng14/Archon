@@ -1,10 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 
 interface PowerButtonProps {
   isOn: boolean;
   onClick: () => void;
-  color?: 'purple' | 'green' | 'pink' | 'blue' | 'cyan' | 'orange';
+  color?: 'neutral' | 'purple' | 'green' | 'pink' | 'blue' | 'cyan' | 'orange';
   size?: number;
 }
 
@@ -27,48 +27,48 @@ export const PowerButton: React.FC<PowerButtonProps> = ({
   color = 'blue',
   size = 40
 }) => {
-  const colorMap = {
+  const colorMap = { neutral: { border: 'border-border', glow: 'shadow-none', glowHover: 'hover:shadow-none', fill: 'bg-muted', innerGlow: 'shadow-none' },
     purple: {
       border: 'border-purple-400',
-      glow: 'shadow-[0_0_15px_rgba(168,85,247,0.8)]',
-      glowHover: 'hover:shadow-[0_0_25px_rgba(168,85,247,1)]',
+      glow: 'shadow-none',
+      glowHover: 'hover:shadow-none',
       fill: 'bg-purple-400',
-      innerGlow: 'shadow-[inset_0_0_10px_rgba(168,85,247,0.8)]'
+      innerGlow: 'shadow-none'
     },
     green: {
       border: 'border-emerald-400',
-      glow: 'shadow-[0_0_15px_rgba(16,185,129,0.8)]',
-      glowHover: 'hover:shadow-[0_0_25px_rgba(16,185,129,1)]',
+      glow: 'shadow-none',
+      glowHover: 'hover:shadow-none',
       fill: 'bg-emerald-400',
-      innerGlow: 'shadow-[inset_0_0_10px_rgba(16,185,129,0.8)]'
+      innerGlow: 'shadow-none'
     },
     pink: {
       border: 'border-pink-400',
-      glow: 'shadow-[0_0_15px_rgba(236,72,153,0.8)]',
-      glowHover: 'hover:shadow-[0_0_25px_rgba(236,72,153,1)]',
+      glow: 'shadow-none',
+      glowHover: 'hover:shadow-none',
       fill: 'bg-pink-400',
-      innerGlow: 'shadow-[inset_0_0_10px_rgba(236,72,153,0.8)]'
+      innerGlow: 'shadow-none'
     },
     blue: {
       border: 'border-blue-400',
-      glow: 'shadow-[0_0_15px_rgba(59,130,246,0.8)]',
-      glowHover: 'hover:shadow-[0_0_25px_rgba(59,130,246,1)]',
+      glow: 'shadow-none',
+      glowHover: 'hover:shadow-none',
       fill: 'bg-blue-400',
-      innerGlow: 'shadow-[inset_0_0_10px_rgba(59,130,246,0.8)]'
+      innerGlow: 'shadow-none'
     },
     cyan: {
       border: 'border-cyan-400',
-      glow: 'shadow-[0_0_15px_rgba(34,211,238,0.8)]',
-      glowHover: 'hover:shadow-[0_0_25px_rgba(34,211,238,1)]',
+      glow: 'shadow-none',
+      glowHover: 'hover:shadow-none',
       fill: 'bg-cyan-400',
-      innerGlow: 'shadow-[inset_0_0_10px_rgba(34,211,238,0.8)]'
+      innerGlow: 'shadow-none'
     },
     orange: {
       border: 'border-orange-400',
-      glow: 'shadow-[0_0_15px_rgba(249,115,22,0.8)]',
-      glowHover: 'hover:shadow-[0_0_25px_rgba(249,115,22,1)]',
-      fill: 'bg-orange-400',
-      innerGlow: 'shadow-[inset_0_0_10px_rgba(249,115,22,0.8)]'
+      glow: 'shadow-none',
+      glowHover: 'hover:shadow-none',
+      fill: 'bg-muted',
+      innerGlow: 'shadow-none'
     }
   };
 
@@ -78,12 +78,12 @@ export const PowerButton: React.FC<PowerButtonProps> = ({
     <motion.button
       onClick={onClick}
       className={`
-        relative rounded-full border-2 transition-all duration-300
+        relative rounded-full border-2 transition-all duration-200
         ${styles.border}
-        ${isOn ? styles.glow : 'shadow-[0_0_5px_rgba(0,0,0,0.3)]'}
+        
         ${styles.glowHover}
-        bg-gradient-to-b from-gray-900 to-black
-        hover:scale-110
+        bg-card text-card-foreground
+        hover:scale-105
         active:scale-95
       `}
       style={{ width: size, height: size }}
@@ -91,38 +91,10 @@ export const PowerButton: React.FC<PowerButtonProps> = ({
       whileTap={{ scale: 0.95 }}
     >
       {/* Outer ring glow effect - keep this for the button border glow */}
-      <motion.div
-        className={`
-          absolute inset-[-4px] rounded-full border-2
-          ${isOn ? styles.border : 'border-transparent'}
-          blur-sm
-        `}
-        animate={{
-          opacity: isOn ? [0.3, 0.6, 0.3] : 0,
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      
 
       {/* Inner glow effect - glows inside the button */}
-      <motion.div
-        className={`
-          absolute inset-[2px] rounded-full
-          ${isOn ? styles.fill : ''}
-          blur-md opacity-20
-        `}
-        animate={{
-          opacity: isOn ? [0.1, 0.3, 0.1] : 0,
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      
 
       {/* Inner power symbol container */}
       <div className="relative w-full h-full flex items-center justify-center">
@@ -171,3 +143,5 @@ export const PowerButton: React.FC<PowerButtonProps> = ({
     </motion.button>
   );
 };
+
+

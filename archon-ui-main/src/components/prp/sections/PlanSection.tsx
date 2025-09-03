@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Clock, Zap, CheckCircle2 } from 'lucide-react';
 import { SectionProps, PRPPhase } from '../types/prp.types';
 
@@ -23,7 +23,7 @@ export const PlanSection: React.FC<SectionProps> = ({
   const renderPhase = (phaseKey: string, phase: PRPPhase, index: number) => {
     const color = getPhaseColor(index);
     const colorMap = {
-      orange: 'from-orange-50/50 to-yellow-50/50 dark:from-orange-900/20 dark:to-yellow-900/20 border-orange-200 dark:border-orange-800',
+      orange: 'from-transparent to-yellow-50/50 dark:from-transparent dark:to-yellow-900/20 border-orange-200 dark:border-orange-800',
       yellow: 'from-yellow-50/50 to-amber-50/50 dark:from-yellow-900/20 dark:to-amber-900/20 border-yellow-200 dark:border-yellow-800',
       green: 'from-green-50/50 to-emerald-50/50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800',
       blue: 'from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-200 dark:border-blue-800',
@@ -33,7 +33,7 @@ export const PlanSection: React.FC<SectionProps> = ({
     return (
       <div 
         key={phaseKey}
-        className={`p-4 rounded-lg bg-gradient-to-r ${colorMap[color as keyof typeof colorMap]} border`}
+        className={`p-4 rounded-lg bg-card ${colorMap[color as keyof typeof colorMap]} border`}
       >
         <h4 className="font-bold text-gray-800 dark:text-white mb-2 flex items-center gap-2">
           <Zap className="w-5 h-5 text-orange-500" />
@@ -114,7 +114,7 @@ export const PlanSection: React.FC<SectionProps> = ({
   
   // Fallback to generic rendering for non-phased plans
   return (
-    <div className="p-4 rounded-lg bg-gradient-to-r from-orange-50/50 to-yellow-50/50 dark:from-orange-900/20 dark:to-yellow-900/20 border border-orange-200 dark:border-orange-800">
+    <div className="p-4 rounded-lg bg-card from-transparent to-yellow-50/50 dark:from-transparent dark:to-yellow-900/20 border border-orange-200 dark:border-orange-800">
       <h4 className="font-semibold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
         <Clock className="w-5 h-5 text-orange-500" />
         {title}

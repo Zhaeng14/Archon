@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Hash } from 'lucide-react';
 import { PRPSectionProps } from '../types/prp.types';
 import { formatKey, formatValue } from '../utils/formatters';
@@ -21,7 +21,7 @@ export const KeyValueSection: React.FC<PRPSectionProps> = ({
     blue: 'from-blue-400 to-blue-600',
     purple: 'from-purple-400 to-purple-600',
     green: 'from-green-400 to-green-600',
-    orange: 'from-orange-400 to-orange-600',
+    orange: 'from-transparent to-transparent',
     pink: 'from-pink-400 to-pink-600',
     cyan: 'from-cyan-400 to-cyan-600',
     indigo: 'from-indigo-400 to-indigo-600',
@@ -80,7 +80,7 @@ export const KeyValueSection: React.FC<PRPSectionProps> = ({
     <div className="space-y-4">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 border border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-3 mb-6">
-          <div className={`p-2 rounded-lg bg-gradient-to-br ${colorMap[accentColor as keyof typeof colorMap] || colorMap.green} text-white shadow-lg`}>
+          <div className={`p-2 rounded-lg bg-card ${colorMap[accentColor as keyof typeof colorMap] || colorMap.green} text-white shadow-lg`}>
             {icon}
           </div>
           <h3 className="text-lg font-bold text-gray-800 dark:text-white">
@@ -109,3 +109,5 @@ export const KeyValueSection: React.FC<PRPSectionProps> = ({
     </div>
   );
 };
+
+

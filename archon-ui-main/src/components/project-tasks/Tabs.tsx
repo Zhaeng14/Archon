@@ -1,4 +1,4 @@
-import React, { useMemo, useState, createContext, useContext } from 'react';
+﻿import React, { useMemo, useState, createContext, useContext } from 'react';
 interface TabsProps {
   defaultValue: string;
   value?: string;
@@ -73,32 +73,32 @@ export const TabsTrigger = ({
   const colorMap = {
     blue: {
       text: 'text-blue-600 dark:text-blue-400',
-      glow: 'bg-blue-500 shadow-[0_0_10px_2px_rgba(59,130,246,0.4)] dark:shadow-[0_0_20px_5px_rgba(59,130,246,0.7)]',
+      glow: 'bg-blue-500 shadow-none dark:shadow-none',
       hover: 'hover:text-blue-500 dark:hover:text-blue-400/70'
     },
     purple: {
       text: 'text-purple-600 dark:text-purple-400',
-      glow: 'bg-purple-500 shadow-[0_0_10px_2px_rgba(168,85,247,0.4)] dark:shadow-[0_0_20px_5px_rgba(168,85,247,0.7)]',
+      glow: 'bg-purple-500 shadow-none dark:shadow-none',
       hover: 'hover:text-purple-500 dark:hover:text-purple-400/70'
     },
     pink: {
       text: 'text-pink-600 dark:text-pink-400',
-      glow: 'bg-pink-500 shadow-[0_0_10px_2px_rgba(236,72,153,0.4)] dark:shadow-[0_0_20px_5px_rgba(236,72,153,0.7)]',
+      glow: 'bg-pink-500 shadow-none dark:shadow-none',
       hover: 'hover:text-pink-500 dark:hover:text-pink-400/70'
     },
     orange: {
-      text: 'text-orange-600 dark:text-orange-400',
-      glow: 'bg-orange-500 shadow-[0_0_10px_2px_rgba(249,115,22,0.4)] dark:shadow-[0_0_20px_5px_rgba(249,115,22,0.7)]',
-      hover: 'hover:text-orange-500 dark:hover:text-orange-400/70'
+      text: 'text-orange-600 dark:text-foreground/70',
+      glow: 'bg-muted shadow-none dark:shadow-none',
+      hover: 'hover:text-orange-500 dark:hover:text-foreground/70/70'
     },
     cyan: {
       text: 'text-cyan-600 dark:text-cyan-400',
-      glow: 'bg-cyan-500 shadow-[0_0_10px_2px_rgba(34,211,238,0.4)] dark:shadow-[0_0_20px_5px_rgba(34,211,238,0.7)]',
+      glow: 'bg-cyan-500 shadow-none dark:shadow-none',
       hover: 'hover:text-cyan-500 dark:hover:text-cyan-400/70'
     },
     green: {
       text: 'text-emerald-600 dark:text-emerald-400',
-      glow: 'bg-emerald-500 shadow-[0_0_10px_2px_rgba(16,185,129,0.4)] dark:shadow-[0_0_20px_5px_rgba(16,185,129,0.7)]',
+      glow: 'bg-emerald-500 shadow-none dark:shadow-none',
       hover: 'hover:text-emerald-500 dark:hover:text-emerald-400/70'
     }
   };
@@ -133,3 +133,4 @@ export const TabsContent = ({
       {children}
     </div>;
 };
+

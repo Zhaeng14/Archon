@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { Play, Square, Copy, Clock, Server, AlertCircle, CheckCircle, Loader } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card } from '../components/ui/Card';
@@ -412,7 +412,7 @@ export const MCPPage = () => {
         className="text-3xl font-bold text-gray-800 dark:text-white mb-8 flex items-center gap-3"
         variants={titleVariants}
       >
-        <svg fill="currentColor" fillRule="evenodd" height="28" width="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="text-pink-500 filter drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">
+        <svg fill="currentColor" fillRule="evenodd" height="28" width="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="text-pink-500 filter ">
           <path d="M15.688 2.343a2.588 2.588 0 00-3.61 0l-9.626 9.44a.863.863 0 01-1.203 0 .823.823 0 010-1.18l9.626-9.44a4.313 4.313 0 016.016 0 4.116 4.116 0 011.204 3.54 4.3 4.3 0 013.609 1.18l.05.05a4.115 4.115 0 010 5.9l-8.706 8.537a.274.274 0 000 .393l1.788 1.754a.823.823 0 010 1.18.863.863 0 01-1.203 0l-1.788-1.753a1.92 1.92 0 010-2.754l8.706-8.538a2.47 2.47 0 000-3.54l-.05-.049a2.588 2.588 0 00-3.607-.003l-7.172 7.034-.002.002-.098.097a.863.863 0 01-1.204 0 .823.823 0 010-1.18l7.273-7.133a2.47 2.47 0 00-.003-3.537z"></path>
           <path d="M14.485 4.703a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a4.115 4.115 0 000 5.9 4.314 4.314 0 006.016 0l7.12-6.982a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a2.588 2.588 0 01-3.61 0 2.47 2.47 0 010-3.54l7.12-6.982z"></path>
         </svg>
@@ -432,7 +432,7 @@ export const MCPPage = () => {
           >
             Server Control
             {activeTab === 'server' && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></span>
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 shadow-none"></span>
             )}
           </button>
           {/* TODO: MCP Client feature not implemented - commenting out for now
@@ -446,7 +446,7 @@ export const MCPPage = () => {
           >
             MCP Clients
             {activeTab === 'clients' && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.5)]"></span>
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-500 shadow-none"></span>
             )}
           </button>
           */}
@@ -466,7 +466,7 @@ export const MCPPage = () => {
                 Archon MCP Server
               </h2>
               
-              <Card accentColor="blue" className="space-y-6 flex-1">
+              <Card accentColor="neutral" className="space-y-6 flex-1">
                 {/* Status Display */}
                 <div className="flex items-center justify-between">
                   <div 
@@ -496,7 +496,7 @@ export const MCPPage = () => {
                         onClick={handleStartServer}
                         disabled={isStarting}
                         variant="primary"
-                        accentColor="green"
+                        accentColor="neutral"
                         className="shadow-emerald-500/20 shadow-sm"
                       >
                         {isStarting ? (
@@ -516,7 +516,7 @@ export const MCPPage = () => {
                         onClick={handleStopServer}
                         disabled={isStopping || serverStatus.status !== 'running'}
                         variant="primary"
-                        accentColor="pink"
+                        accentColor="neutral"
                         className="shadow-pink-500/20 shadow-sm"
                       >
                         {isStopping ? (
@@ -547,7 +547,7 @@ export const MCPPage = () => {
                       </h3>
                       <Button
                         variant="secondary"
-                        accentColor="blue"
+                        accentColor="neutral"
                         size="sm"
                         onClick={handleCopyConfig}
                       >
@@ -563,7 +563,7 @@ export const MCPPage = () => {
                           onClick={() => setSelectedIDE('claudecode')}
                           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
                             selectedIDE === 'claudecode'
-                              ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                              ? 'border-gray-500 text-gray-700 dark:text-gray-300'
                               : 'border-transparent text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-300'
                           } cursor-pointer`}
                         >
@@ -573,7 +573,7 @@ export const MCPPage = () => {
                           onClick={() => setSelectedIDE('gemini')}
                           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
                             selectedIDE === 'gemini'
-                              ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                              ? 'border-gray-500 text-gray-700 dark:text-gray-300'
                               : 'border-transparent text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-300'
                           } cursor-pointer`}
                         >
@@ -583,7 +583,7 @@ export const MCPPage = () => {
                           onClick={() => setSelectedIDE('cursor')}
                           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
                             selectedIDE === 'cursor'
-                              ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                              ? 'border-gray-500 text-gray-700 dark:text-gray-300'
                               : 'border-transparent text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-300'
                           } cursor-pointer`}
                         >
@@ -593,7 +593,7 @@ export const MCPPage = () => {
                           onClick={() => setSelectedIDE('windsurf')}
                           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
                             selectedIDE === 'windsurf'
-                              ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                              ? 'border-gray-500 text-gray-700 dark:text-gray-300'
                               : 'border-transparent text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-300'
                           } cursor-pointer`}
                         >
@@ -603,7 +603,7 @@ export const MCPPage = () => {
                           onClick={() => setSelectedIDE('cline')}
                           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
                             selectedIDE === 'cline'
-                              ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                              ? 'border-gray-500 text-gray-700 dark:text-gray-300'
                               : 'border-transparent text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-300'
                           } cursor-pointer`}
                         >
@@ -613,7 +613,7 @@ export const MCPPage = () => {
                           onClick={() => setSelectedIDE('kiro')}
                           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
                             selectedIDE === 'kiro'
-                              ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                              ? 'border-gray-500 text-gray-700 dark:text-gray-300'
                               : 'border-transparent text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-300'
                           } cursor-pointer`}
                         >
@@ -623,7 +623,7 @@ export const MCPPage = () => {
                           onClick={() => setSelectedIDE('augment')}
                           className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
                             selectedIDE === 'augment'
-                              ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                              ? 'border-gray-500 text-gray-700 dark:text-gray-300'
                               : 'border-transparent text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-300'
                           } cursor-pointer`}
                         >
@@ -671,7 +671,7 @@ export const MCPPage = () => {
                       <div className="mt-4">
                         <Button
                           variant="primary"
-                          accentColor="blue"
+                          accentColor="neutral"
                           onClick={handleCursorOneClick}
                           className="w-full"
                         >
@@ -695,7 +695,7 @@ export const MCPPage = () => {
                 Server Logs
               </h2>
               
-              <Card accentColor="purple" className="h-full flex flex-col">
+              <Card accentColor="neutral" className="h-full flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                   <p className="text-sm text-gray-600 dark:text-zinc-400">
                     {logs.length > 0 
@@ -768,3 +768,5 @@ export const MCPPage = () => {
     </motion.div>
   );
 };
+
+

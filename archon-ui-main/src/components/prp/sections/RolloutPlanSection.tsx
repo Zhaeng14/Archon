@@ -1,4 +1,4 @@
-import React from 'react';
+﻿﻿import React from 'react';
 import { Calendar, CheckCircle, AlertCircle } from 'lucide-react';
 import { PRPSectionProps } from '../types/prp.types';
 import { formatKey, formatValue } from '../utils/formatters';
@@ -24,7 +24,7 @@ export const RolloutPlanSection: React.FC<PRPSectionProps> = ({
     blue: 'from-blue-400 to-blue-600 border-blue-500',
     purple: 'from-purple-400 to-purple-600 border-purple-500',
     green: 'from-green-400 to-green-600 border-green-500',
-    orange: 'from-orange-400 to-orange-600 border-orange-500',
+    orange: 'from-transparent to-transparent border-orange-500',
     pink: 'from-pink-400 to-pink-600 border-pink-500',
     cyan: 'from-cyan-400 to-cyan-600 border-cyan-500',
     indigo: 'from-indigo-400 to-indigo-600 border-indigo-500',
@@ -66,7 +66,7 @@ export const RolloutPlanSection: React.FC<PRPSectionProps> = ({
       return (
         <div key={index} className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 ml-4">
           <div className="flex items-start gap-3 mb-3">
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-white flex items-center justify-center font-bold shadow-md">
+            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-card from-transparent to-transparent text-white flex items-center justify-center font-bold shadow-md">
               {index + 1}
             </div>
             <div className="flex-1">
@@ -204,7 +204,7 @@ export const RolloutPlanSection: React.FC<PRPSectionProps> = ({
   const header = (
     <div className={`rounded-lg p-6 ${bgColorMap[accentColor as keyof typeof bgColorMap] || bgColorMap.orange} border-l-4 ${colorMap[accentColor as keyof typeof colorMap].split(' ')[2]}`}>
       <div className="flex items-center gap-3">
-        <div className={`p-2 rounded-lg bg-gradient-to-br ${colorMap[accentColor as keyof typeof colorMap].split(' ').slice(0, 2).join(' ')} text-white shadow-lg`}>
+        <div className={`p-2 rounded-lg bg-card ${colorMap[accentColor as keyof typeof colorMap].split(' ').slice(0, 2).join(' ')} text-white shadow-lg`}>
           {icon}
         </div>
         <h3 className="text-lg font-bold text-gray-800 dark:text-white flex-1">
@@ -234,3 +234,5 @@ export const RolloutPlanSection: React.FC<PRPSectionProps> = ({
     </div>
   );
 };
+
+

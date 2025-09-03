@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+﻿import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../contexts/ToastContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStaggeredEntrance } from '../hooks/useStaggeredEntrance';
@@ -82,12 +82,12 @@ export function ProjectPage({
   useEffect(() => {
     const loadProjectsData = async () => {
       try {
-        console.log('🚀 Loading projects...');
+        console.log('馃殌 Loading projects...');
         setIsLoadingProjects(true);
         setProjectsError(null);
         
         const projectsData = await projectService.listProjects();
-        console.log(`📦 Received ${projectsData.length} projects from API`);
+        console.log(`馃摝 Received ${projectsData.length} projects from API`);
         
         // Log each project's pinned status
         projectsData.forEach(p => {
@@ -109,17 +109,17 @@ export function ProjectPage({
         
         // Find pinned project - this is ALWAYS the default on page load
         const pinnedProject = sortedProjects.find(p => p.pinned === true);
-        console.log(`📌 Pinned project:`, pinnedProject ? `${pinnedProject.title} (pinned=${pinnedProject.pinned})` : 'None found');
+        console.log(`馃搶 Pinned project:`, pinnedProject ? `${pinnedProject.title} (pinned=${pinnedProject.pinned})` : 'None found');
         
         // Debug: Log all projects and their pinned status
-        console.log('📋 All projects with pinned status:');
+        console.log('馃搵 All projects with pinned status:');
         sortedProjects.forEach(p => {
           console.log(`   - ${p.title}: pinned=${p.pinned} (type: ${typeof p.pinned})`);
         });
         
         // On page load, ALWAYS select pinned project if it exists
         if (pinnedProject) {
-          console.log(`✅ Selecting pinned project: ${pinnedProject.title}`);
+          console.log(`鉁?Selecting pinned project: ${pinnedProject.title}`);
           setSelectedProject(pinnedProject);
           setShowProjectDetails(true);
           setActiveTab('tasks');
@@ -130,7 +130,7 @@ export function ProjectPage({
         } else if (sortedProjects.length > 0) {
           // No pinned project, select first one
           const firstProject = sortedProjects[0];
-          console.log(`📋 No pinned project, selecting first: ${firstProject.title}`);
+          console.log(`馃搵 No pinned project, selecting first: ${firstProject.title}`);
           setSelectedProject(firstProject);
           setShowProjectDetails(true);
           setActiveTab('tasks');
@@ -153,7 +153,7 @@ export function ProjectPage({
 
   // Set up Socket.IO for real-time project list updates (after initial load)
   useEffect(() => {
-    console.log('📡 Setting up Socket.IO for project list updates');
+    console.log('馃摗 Setting up Socket.IO for project list updates');
     
     const connectWebSocket = async () => {
       try {
@@ -161,7 +161,7 @@ export function ProjectPage({
         projectListSocketIO.send({ type: 'subscribe_projects' });
         
         const handleProjectUpdate = (message: any) => {
-          console.log('📨 Received project list update via Socket.IO');
+          console.log('馃摠 Received project list update via Socket.IO');
           if (message.data && message.data.projects) {
             const projectsData = message.data.projects;
             
@@ -197,7 +197,7 @@ export function ProjectPage({
     const cleanup = connectWebSocket();
     
     return () => {
-      console.log('🧹 Disconnecting project list Socket.IO');
+      console.log('馃Ч Disconnecting project list Socket.IO');
       projectListSocketIO.disconnect();
       cleanup.then(cleanupFn => cleanupFn && cleanupFn());
     };
@@ -242,32 +242,32 @@ export function ProjectPage({
   useEffect(() => {
     if (!selectedProject) return;
 
-    console.log('🔌 Setting up Socket.IO for project task updates:', selectedProject.id);
+    console.log('馃攲 Setting up Socket.IO for project task updates:', selectedProject.id);
     
     // Store the project room in localStorage for reconnection
     localStorage.setItem('lastProjectRoom', selectedProject.id);
     
     // Define handlers outside so they can be removed in cleanup
     const handleTaskCreated = () => {
-      console.log('✅ Task created - refreshing counts for all projects');
+      console.log('鉁?Task created - refreshing counts for all projects');
       const projectIds = projects.map(p => p.id).filter(id => !id.startsWith('temp-'));
       loadTaskCountsForAllProjects(projectIds);
     };
     
     const handleTaskUpdated = () => {
-      console.log('✅ Task updated - refreshing counts for all projects');
+      console.log('鉁?Task updated - refreshing counts for all projects');
       const projectIds = projects.map(p => p.id).filter(id => !id.startsWith('temp-'));
       loadTaskCountsForAllProjects(projectIds);
     };
     
     const handleTaskDeleted = () => {
-      console.log('✅ Task deleted - refreshing counts for all projects');
+      console.log('鉁?Task deleted - refreshing counts for all projects');
       const projectIds = projects.map(p => p.id).filter(id => !id.startsWith('temp-'));
       loadTaskCountsForAllProjects(projectIds);
     };
     
     const handleTaskArchived = () => {
-      console.log('✅ Task archived - refreshing counts for all projects');
+      console.log('鉁?Task archived - refreshing counts for all projects');
       const projectIds = projects.map(p => p.id).filter(id => !id.startsWith('temp-'));
       loadTaskCountsForAllProjects(projectIds);
     };
@@ -297,7 +297,7 @@ export function ProjectPage({
 
     return () => {
       // Don't disconnect the shared taskUpdateSocketIO - let TasksTab manage it
-      console.log('🔌 Cleaning up task Socket.IO handlers');
+      console.log('馃攲 Cleaning up task Socket.IO handlers');
       // Just remove the handlers, don't disconnect
       taskUpdateSocketIO.removeMessageHandler('task_created', handleTaskCreated);
       taskUpdateSocketIO.removeMessageHandler('task_updated', handleTaskUpdated);
@@ -537,7 +537,7 @@ export function ProjectPage({
             progressId: response.progress_id,
             status: 'starting',
             percentage: 0,
-            logs: ['🚀 Starting project creation...'],
+            logs: ['馃殌 Starting project creation...'],
             project: undefined
           }
         };
@@ -554,8 +554,8 @@ export function ProjectPage({
         projectCreationProgressService.streamProgress(
           response.progress_id,
           (data: ProjectCreationProgressData) => {
-            console.log(`🎯 [PROJECT-PAGE] Progress callback triggered for ${response.progress_id}:`, data);
-            console.log(`🎯 [PROJECT-PAGE] Status: ${data.status}, Percentage: ${data.percentage}, Step: ${data.step}`);
+            console.log(`馃幆 [PROJECT-PAGE] Progress callback triggered for ${response.progress_id}:`, data);
+            console.log(`馃幆 [PROJECT-PAGE] Status: ${data.status}, Percentage: ${data.percentage}, Step: ${data.step}`);
             
             // Always update the temporary project's progress - this will trigger the card's useEffect
             setProjects((prev) => {
@@ -564,13 +564,13 @@ export function ProjectPage({
                   ? { ...p, creationProgress: data }
                   : p
               );
-              console.log(`🎯 [PROJECT-PAGE] Updated projects state with progress data`);
+              console.log(`馃幆 [PROJECT-PAGE] Updated projects state with progress data`);
               return updated;
             });
             
             // Handle error state
             if (data.status === 'error') {
-              console.log(`🎯 [PROJECT-PAGE] Error status detected, will remove project after delay`);
+              console.log(`馃幆 [PROJECT-PAGE] Error status detected, will remove project after delay`);
               // Remove failed project after delay
               setTimeout(() => {
                 setProjects((prev) => prev.filter(p => p.id !== tempId));
@@ -592,7 +592,7 @@ export function ProjectPage({
         setIsCreatingProject(false);
       }
       
-      console.log('✅ Project creation initiated successfully');
+      console.log('鉁?Project creation initiated successfully');
     } catch (error) {
       console.error('Failed to create project:', error);
       setIsCreatingProject(false);
@@ -645,7 +645,7 @@ export function ProjectPage({
       {/* Page Header with New Project Button */}
       <motion.div className="flex items-center justify-between mb-8" variants={itemVariants}>
         <motion.h1 className="text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-3" variants={titleVariants}>
-          <img src="/logo-neon.png" alt="Projects" className="w-7 h-7 filter drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+          <img src="/favicon.png" alt="Projects" className="w-7 h-7 filter " />
           Projects
         </motion.h1>
         <Button 
@@ -741,13 +741,13 @@ export function ProjectPage({
                         : 'bg-gradient-to-b from-white/80 to-white/60 dark:from-white/10 dark:to-black/30'
                     }
                     border ${project.pinned
-                      ? 'border-purple-500/80 dark:border-purple-500/80 shadow-[0_0_15px_rgba(168,85,247,0.3)]'
+                      ? 'border-border shadow-sm'
                       : selectedProject?.id === project.id 
                         ? 'border-purple-400/60 dark:border-purple-500/60' 
                         : 'border-gray-200 dark:border-zinc-800/50'
                     }
                     ${selectedProject?.id === project.id
-                      ? 'shadow-[0_0_15px_rgba(168,85,247,0.4),0_0_10px_rgba(147,51,234,0.3)] dark:shadow-[0_0_20px_rgba(168,85,247,0.5),0_0_15px_rgba(147,51,234,0.4)]'
+                      ? 'shadow-sm'
                       : 'shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)]'
                     }
                     hover:shadow-[0_15px_40px_-15px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_15px_40px_-15px_rgba(0,0,0,0.9)]
@@ -766,7 +766,7 @@ export function ProjectPage({
                     <div className="flex items-center justify-center mb-4 px-2">
                       <h3 className={`font-medium text-center leading-tight line-clamp-2 transition-all duration-300 ${
                         selectedProject?.id === project.id 
-                          ? 'text-gray-900 dark:text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]' 
+                          ? 'text-gray-900 dark:text-white ' 
                           : 'text-gray-500 dark:text-gray-400'
                       }`}>
                         {project.title}
@@ -776,51 +776,51 @@ export function ProjectPage({
                       {/* Neon pill boxes for task counts */}
                       {/* Todo pill */}
                       <div className="relative flex-1">
-                        <div className={`absolute inset-0 bg-pink-600 rounded-full blur-md ${selectedProject?.id === project.id ? 'opacity-30 dark:opacity-75' : 'opacity-0'}`}></div>
+                        <div className="opacity-0"></div>
                         <div className={`relative flex items-center h-12 backdrop-blur-sm rounded-full border shadow-sm transition-all duration-300 ${
                           selectedProject?.id === project.id 
-                            ? 'bg-white/70 dark:bg-zinc-900/90 border-pink-300 dark:border-pink-500/50 dark:shadow-[0_0_10px_rgba(236,72,153,0.5)] hover:shadow-md dark:hover:shadow-[0_0_15px_rgba(236,72,153,0.7)]' 
+                            ? 'bg-white/70 dark:bg-zinc-900/90 border-border shadow-sm hover:shadow-md' 
                             : 'bg-white/30 dark:bg-zinc-900/30 border-gray-300/50 dark:border-gray-700/50'
                         }`}>
                           <div className="flex flex-col items-center justify-center px-2 min-w-[40px]">
-                            <ListTodo className={`w-4 h-4 ${selectedProject?.id === project.id ? 'text-pink-600 dark:text-pink-400' : 'text-gray-500 dark:text-gray-600'}`} />
-                            <span className={`text-[8px] font-medium ${selectedProject?.id === project.id ? 'text-pink-600 dark:text-pink-400' : 'text-gray-500 dark:text-gray-600'}`}>ToDo</span>
+                            <ListTodo className={`w-4 h-4 ${selectedProject?.id === project.id ? 'text-foreground' : 'text-muted-foreground'}`} />
+                            <span className={`text-[8px] font-medium ${selectedProject?.id === project.id ? 'text-foreground' : 'text-muted-foreground'}`}>ToDo</span>
                           </div>
-                          <div className={`flex-1 flex items-center justify-center border-l ${selectedProject?.id === project.id ? 'border-pink-300 dark:border-pink-500/30' : 'border-gray-300/50 dark:border-gray-700/50'}`}>
-                            <span className={`text-lg font-bold ${selectedProject?.id === project.id ? 'text-pink-600 dark:text-pink-400' : 'text-gray-500 dark:text-gray-600'}`}>{projectTaskCounts[project.id]?.todo || 0}</span>
+                          <div className={`flex-1 flex items-center justify-center border-l ${selectedProject?.id === project.id ? 'border-border' : 'border-gray-300/50 dark:border-gray-700/50'}`}>
+                            <span className={`text-lg font-bold ${selectedProject?.id === project.id ? 'text-foreground' : 'text-muted-foreground'}`}>{projectTaskCounts[project.id]?.todo || 0}</span>
                           </div>
                         </div>
                       </div>
                       
                       {/* Doing pill */}
                       <div className="relative flex-1">
-                        <div className={`absolute inset-0 bg-blue-600 rounded-full blur-md ${selectedProject?.id === project.id ? 'opacity-30 dark:opacity-75' : 'opacity-0'}`}></div>
+                        <div className="opacity-0"></div>
                         <div className={`relative flex items-center h-12 backdrop-blur-sm rounded-full border shadow-sm transition-all duration-300 ${
                           selectedProject?.id === project.id 
-                            ? 'bg-white/70 dark:bg-zinc-900/90 border-blue-300 dark:border-blue-500/50 dark:shadow-[0_0_10px_rgba(59,130,246,0.5)] hover:shadow-md dark:hover:shadow-[0_0_15px_rgba(59,130,246,0.7)]' 
+                            ? 'bg-white/70 dark:bg-zinc-900/90 border-border shadow-sm hover:shadow-md' 
                             : 'bg-white/30 dark:bg-zinc-900/30 border-gray-300/50 dark:border-gray-700/50'
                         }`}>
                           <div className="flex flex-col items-center justify-center px-2 min-w-[40px]">
-                            <Activity className={`w-4 h-4 ${selectedProject?.id === project.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-600'}`} />
-                            <span className={`text-[8px] font-medium ${selectedProject?.id === project.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-600'}`}>Doing</span>
+                            <Activity className={`w-4 h-4 ${selectedProject?.id === project.id ? 'text-foreground' : 'text-muted-foreground'}`} />
+                            <span className={`text-[8px] font-medium ${selectedProject?.id === project.id ? 'text-foreground' : 'text-muted-foreground'}`}>Doing</span>
                           </div>
-                          <div className={`flex-1 flex items-center justify-center border-l ${selectedProject?.id === project.id ? 'border-blue-300 dark:border-blue-500/30' : 'border-gray-300/50 dark:border-gray-700/50'}`}>
-                            <span className={`text-lg font-bold ${selectedProject?.id === project.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-600'}`}>{projectTaskCounts[project.id]?.doing || 0}</span>
+                          <div className={`flex-1 flex items-center justify-center border-l ${selectedProject?.id === project.id ? 'border-border' : 'border-gray-300/50 dark:border-gray-700/50'}`}>
+                            <span className={`text-lg font-bold ${selectedProject?.id === project.id ? 'text-foreground' : 'text-muted-foreground'}`}>{projectTaskCounts[project.id]?.doing || 0}</span>
                           </div>
                         </div>
                       </div>
                       
                       {/* Done pill */}
                       <div className="relative flex-1">
-                        <div className={`absolute inset-0 bg-green-600 rounded-full blur-md ${selectedProject?.id === project.id ? 'opacity-30 dark:opacity-75' : 'opacity-0'}`}></div>
+                        <div className="opacity-0"></div>
                         <div className={`relative flex items-center h-12 backdrop-blur-sm rounded-full border shadow-sm transition-all duration-300 ${
                           selectedProject?.id === project.id 
-                            ? 'bg-white/70 dark:bg-zinc-900/90 border-green-300 dark:border-green-500/50 dark:shadow-[0_0_10px_rgba(34,197,94,0.5)] hover:shadow-md dark:hover:shadow-[0_0_15px_rgba(34,197,94,0.7)]' 
+                            ? 'bg-white/70 dark:bg-zinc-900/90 border-border shadow-sm hover:shadow-md' 
                             : 'bg-white/30 dark:bg-zinc-900/30 border-gray-300/50 dark:border-gray-700/50'
                         }`}>
                           <div className="flex flex-col items-center justify-center px-2 min-w-[40px]">
-                            <CheckCircle2 className={`w-4 h-4 ${selectedProject?.id === project.id ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-600'}`} />
-                            <span className={`text-[8px] font-medium ${selectedProject?.id === project.id ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-600'}`}>Done</span>
+                            <CheckCircle2 className={`w-4 h-4 ${selectedProject?.id === project.id ? 'text-foreground' : 'text-muted-foreground'}`} />
+                            <span className={`text-[8px] font-medium ${selectedProject?.id === project.id ? 'text-foreground' : 'text-muted-foreground'}`}>Done</span>
                           </div>
                           <div className={`flex-1 flex items-center justify-center border-l ${selectedProject?.id === project.id ? 'border-green-300 dark:border-green-500/30' : 'border-gray-300/50 dark:border-gray-700/50'}`}>
                             <span className={`text-lg font-bold ${selectedProject?.id === project.id ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-600'}`}>{projectTaskCounts[project.id]?.done || 0}</span>
@@ -923,7 +923,7 @@ export function ProjectPage({
                   {isLoadingTasks ? (
                     <div className="flex items-center justify-center py-12">
                       <div className="text-center">
-                        <Loader2 className="w-6 h-6 text-orange-500 mx-auto mb-4 animate-spin" />
+                        <Loader2 className="w-6 h-6 text-foreground mx-auto mb-4 animate-spin" />
                         <p className="text-gray-600 dark:text-gray-400">Loading tasks...</p>
                       </div>
                     </div>
@@ -1130,3 +1130,4 @@ export const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({ itemName
     </div>
   );
 };
+

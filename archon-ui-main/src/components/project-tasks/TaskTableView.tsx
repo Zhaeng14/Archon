@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+﻿import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { Check, Trash2, Edit, Tag, User, Bot, Clipboard, Save, Plus } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
@@ -54,7 +54,7 @@ const getOrderGlassStyle = (order: number) => {
 
 const getOrderTextColor = (order: number) => {
   if (order <= 3) return 'text-rose-500 dark:text-rose-400'; // red text
-  if (order <= 6) return 'text-orange-500 dark:text-orange-400'; // orange text
+  if (order <= 6) return 'text-orange-500 dark:text-foreground/70'; // orange text
   if (order <= 10) return 'text-blue-500 dark:text-blue-400'; // blue text
   return 'text-emerald-500 dark:text-emerald-400'; // green text
 };
@@ -149,7 +149,7 @@ const EditableCell = ({
           }}
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
-          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_5px_rgba(34,211,238,0.3)]"
+          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-none"
           autoFocus
         >
           {options.map(option => (
@@ -163,7 +163,7 @@ const EditableCell = ({
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
           placeholder={placeholder}
-          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_5px_rgba(34,211,238,0.3)] resize-none"
+          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-none resize-none"
           rows={2}
           autoFocus
         />
@@ -175,7 +175,7 @@ const EditableCell = ({
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
           placeholder={placeholder}
-          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_5px_rgba(34,211,238,0.3)]"
+          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-none"
           autoFocus
         />
       )}
@@ -368,7 +368,7 @@ const DraggableTaskRow = ({
           <button 
             type="button"
             onClick={() => onTaskDelete(task)}
-            className="p-1.5 rounded-full bg-red-500/20 text-red-500 hover:bg-red-500/30 hover:shadow-[0_0_10px_rgba(239,68,68,0.3)] transition-all duration-300"
+            className="p-1.5 rounded-full bg-red-500/20 text-red-500 hover:bg-red-500/30 hover:shadow-none transition-all duration-300"
             title="Delete task"
             aria-label="Delete task"
           >
@@ -377,7 +377,7 @@ const DraggableTaskRow = ({
           <button 
             type="button"
             onClick={() => onTaskComplete(task.id)} 
-            className="p-1.5 rounded-full bg-green-500/20 text-green-500 hover:bg-green-500/30 hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] transition-all duration-300"
+            className="p-1.5 rounded-full bg-green-500/20 text-green-500 hover:bg-green-500/30 hover:shadow-none transition-all duration-300"
             title="Mark task as complete"
             aria-label="Mark task as complete"
           >
@@ -386,7 +386,7 @@ const DraggableTaskRow = ({
           <button 
             type="button"
             onClick={() => onTaskView(task)} 
-            className="p-1.5 rounded-full bg-cyan-500/20 text-cyan-500 hover:bg-cyan-500/30 hover:shadow-[0_0_10px_rgba(34,211,238,0.3)] transition-all duration-300"
+            className="p-1.5 rounded-full bg-cyan-500/20 text-cyan-500 hover:bg-cyan-500/30 hover:shadow-none transition-all duration-300"
             title="Edit task"
             aria-label="Edit task"
           >
@@ -401,12 +401,12 @@ const DraggableTaskRow = ({
               // Visual feedback like in board view
               const button = e.currentTarget;
               const originalHTML = button.innerHTML;
-              button.innerHTML = '<div class="flex items-center gap-1"><span class="w-3 h-3 text-green-500">✓</span><span class="text-green-500 text-xs">Copied</span></div>';
+              button.innerHTML = '<div class="flex items-center gap-1"><span class="w-3 h-3 text-green-500">鉁?/span><span class="text-green-500 text-xs">Copied</span></div>';
               setTimeout(() => {
                 button.innerHTML = originalHTML;
               }, 2000);
             }}
-            className="p-1.5 rounded-full bg-gray-500/20 text-gray-500 hover:bg-gray-500/30 hover:shadow-[0_0_10px_rgba(107,114,128,0.3)] transition-all duration-300"
+            className="p-1.5 rounded-full bg-gray-500/20 text-gray-500 hover:bg-gray-500/30 hover:shadow-none transition-all duration-300"
             title="Copy Task ID to clipboard"
             aria-label="Copy Task ID to clipboard"
           >
@@ -480,13 +480,13 @@ const AddTaskRow = ({ onTaskCreate, tasks, statusFilter }: AddTaskRowProps) => {
       <tr className="border-t border-cyan-400 dark:border-cyan-500 bg-cyan-50/30 dark:bg-cyan-900/10 relative">
         {/* Toned down neon blue line separator */}
         <td colSpan={6} className="p-0 relative">
-          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_4px_1px_rgba(34,211,238,0.4)] dark:shadow-[0_0_6px_2px_rgba(34,211,238,0.5)]"></div>
+          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-none dark:shadow-none"></div>
         </td>
       </tr>
       <tr className="bg-cyan-50/20 dark:bg-cyan-900/5">
       <td className="p-3">
         <div className="flex items-center justify-center">
-          <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.5)]">
+          <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white bg-cyan-500 shadow-none">
             +
           </div>
         </div>
@@ -498,7 +498,7 @@ const AddTaskRow = ({ onTaskCreate, tasks, statusFilter }: AddTaskRowProps) => {
           onChange={(e) => setNewTask(prev => ({ ...prev, title: e.target.value }))}
           onKeyPress={handleKeyPress}
           placeholder="Type task title and press Enter..."
-          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_5px_rgba(34,211,238,0.3)] transition-all duration-200"
+          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-none transition-all duration-200"
           autoFocus
         />
       </td>
@@ -516,7 +516,7 @@ const AddTaskRow = ({ onTaskCreate, tasks, statusFilter }: AddTaskRowProps) => {
             };
             setNewTask(prev => ({ ...prev, status: statusMap[e.target.value] || 'backlog' }));
           }}
-          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_5px_rgba(34,211,238,0.3)]"
+          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-none"
         >
           <option value="Backlog">Backlog</option>
           <option value="In Progress">In Progress</option>
@@ -531,7 +531,7 @@ const AddTaskRow = ({ onTaskCreate, tasks, statusFilter }: AddTaskRowProps) => {
           onChange={(e) => setNewTask(prev => ({ ...prev, feature: e.target.value }))}
           onKeyPress={handleKeyPress}
           placeholder="Feature..."
-          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_5px_rgba(34,211,238,0.3)]"
+          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-none"
         />
       </td>
       <td className="p-3">
@@ -541,7 +541,7 @@ const AddTaskRow = ({ onTaskCreate, tasks, statusFilter }: AddTaskRowProps) => {
             ...prev, 
             assignee: { name: e.target.value as 'User' | 'Archon' | 'AI IDE Agent', avatar: '' }
           }))}
-          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_5px_rgba(34,211,238,0.3)]"
+          className="w-full bg-white/90 dark:bg-black/90 border border-cyan-300 dark:border-cyan-600 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-cyan-500 focus:shadow-none"
         >
           <option value="AI IDE Agent">AI IDE Agent</option>
           <option value="User">User</option>
@@ -708,7 +708,7 @@ export const TaskTableView = ({
   };
 
   const getHeaderGlow = (type: 'primary' | 'secondary') => {
-    return type === 'primary' ? 'bg-cyan-500 shadow-[0_0_8px_rgba(34,211,238,0.6)]' : 'bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]';
+    return type === 'primary' ? 'bg-cyan-500 shadow-none' : 'bg-purple-500 shadow-none';
   };
 
   return (
@@ -721,7 +721,7 @@ export const TaskTableView = ({
             className={`
               px-3 py-1.5 rounded-full text-xs transition-all duration-200
               ${statusFilter === 'all' 
-                ? 'bg-cyan-100 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 ring-1 ring-cyan-500/50 shadow-[0_0_8px_rgba(34,211,238,0.3)]' 
+                ? 'bg-cyan-100 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 ring-1 ring-cyan-500/50 shadow-none' 
                 : 'bg-gray-100/70 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:bg-gray-200/70 dark:hover:bg-gray-700/50'
               }
             `}
@@ -734,27 +734,27 @@ export const TaskTableView = ({
             switch (status) {
               case 'backlog':
                 return {
-                  selected: 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/50 shadow-[0_0_8px_rgba(107,114,128,0.3)]',
+                  selected: 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/50 shadow-none',
                   unselected: 'bg-gray-100/70 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:bg-gray-200/70 dark:hover:bg-gray-700/50'
                 };
               case 'in-progress':
                 return {
-                  selected: 'bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/50 shadow-[0_0_8px_rgba(59,130,246,0.3)]',
+                  selected: 'bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/50 shadow-none',
                   unselected: 'bg-gray-100/70 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:bg-blue-200/30 dark:hover:bg-blue-900/20'
                 };
               case 'review':
                 return {
-                  selected: 'bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/50 shadow-[0_0_8px_rgba(168,85,247,0.3)]',
+                  selected: 'bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/50 shadow-none',
                   unselected: 'bg-gray-100/70 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:bg-purple-200/30 dark:hover:bg-purple-900/20'
                 };
               case 'complete':
                 return {
-                  selected: 'bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 ring-1 ring-green-500/50 shadow-[0_0_8px_rgba(34,197,94,0.3)]',
+                  selected: 'bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 ring-1 ring-green-500/50 shadow-none',
                   unselected: 'bg-gray-100/70 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:bg-green-200/30 dark:hover:bg-green-900/20'
                 };
               default:
                 return {
-                  selected: 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/50 shadow-[0_0_8px_rgba(107,114,128,0.3)]',
+                  selected: 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/50 shadow-none',
                   unselected: 'bg-gray-100/70 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:bg-gray-200/70 dark:hover:bg-gray-700/50'
                 };
             }
@@ -806,42 +806,42 @@ export const TaskTableView = ({
                   <span className={`w-1 h-1 rounded-full ${getHeaderGlow('secondary')}`}></span>
                 </div>
                 {/* Header divider with glow matching board view */}
-                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-purple-500/30 shadow-[0_0_10px_2px_rgba(168,85,247,0.2)]`}></div>
+                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-purple-500/30 shadow-none`}></div>
               </th>
               <th className="text-left p-3 font-mono border-b border-gray-300 dark:border-gray-800 relative">
                 <div className="flex items-center gap-2">
                   <span className={getHeaderColor('primary')}>Task</span>
                   <span className={`w-1 h-1 rounded-full ${getHeaderGlow('primary')}`}></span>
                 </div>
-                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-cyan-500/30 shadow-[0_0_10px_2px_rgba(34,211,238,0.2)]`}></div>
+                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-cyan-500/30 shadow-none`}></div>
               </th>
               <th className="text-left p-3 font-mono border-b border-gray-300 dark:border-gray-800 relative">
                 <div className="flex items-center gap-2">
                   <span className={getHeaderColor('secondary')}>Status</span>
                   <span className={`w-1 h-1 rounded-full ${getHeaderGlow('secondary')}`}></span>
                 </div>
-                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-purple-500/30 shadow-[0_0_10px_2px_rgba(168,85,247,0.2)]`}></div>
+                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-purple-500/30 shadow-none`}></div>
               </th>
               <th className="text-left p-3 font-mono border-b border-gray-300 dark:border-gray-800 relative">
                 <div className="flex items-center gap-2">
                   <span className={getHeaderColor('secondary')}>Feature</span>
                   <span className={`w-1 h-1 rounded-full ${getHeaderGlow('secondary')}`}></span>
                 </div>
-                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-purple-500/30 shadow-[0_0_10px_2px_rgba(168,85,247,0.2)]`}></div>
+                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-purple-500/30 shadow-none`}></div>
               </th>
               <th className="text-left p-3 font-mono border-b border-gray-300 dark:border-gray-800 relative">
                 <div className="flex items-center gap-2">
                   <span className={getHeaderColor('primary')}>Assignee</span>
                   <span className={`w-1 h-1 rounded-full ${getHeaderGlow('primary')}`}></span>
                 </div>
-                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-cyan-500/30 shadow-[0_0_10px_2px_rgba(34,211,238,0.2)]`}></div>
+                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-cyan-500/30 shadow-none`}></div>
               </th>
               <th className="text-center p-3 font-mono border-b border-gray-300 dark:border-gray-800 relative">
                 <div className="flex items-center justify-center gap-2">
                   <span className={getHeaderColor('primary')}>Actions</span>
                   <span className={`w-1 h-1 rounded-full ${getHeaderGlow('primary')}`}></span>
                 </div>
-                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-cyan-500/30 shadow-[0_0_10px_2px_rgba(34,211,238,0.2)]`}></div>
+                <div className={`absolute bottom-0 left-[15%] right-[15%] w-[70%] mx-auto h-[1px] bg-cyan-500/30 shadow-none`}></div>
               </th>
             </tr>
           </thead>
@@ -889,3 +889,4 @@ export const TaskTableView = ({
     </div>
   );
 }; 
+

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
+﻿import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import '@xyflow/react/dist/style.css';
 import { ReactFlow, Node, Edge, Background, Controls, MarkerType, NodeChange, applyNodeChanges, EdgeChange, applyEdgeChanges, ConnectionLineType, addEdge, Connection, Handle, Position } from '@xyflow/react';
 import { Database, Info, Calendar, TrendingUp, Edit, Plus, X, Save, Trash2 } from 'lucide-react';
@@ -250,11 +250,11 @@ export const DataTab = ({ project }: DataTabProps) => {
 
   const addTableNode = async () => {
     if (!project?.id) {
-      console.error('❌ No project ID available for adding table');
+      console.error('鉂?No project ID available for adding table');
       return;
     }
 
-    console.log('🔄 Adding new table...');
+    console.log('馃攧 Adding new table...');
     const newNodeId = `table-${Date.now()}`;
     const newNode = createTableNode(newNodeId, `New Table ${nodes.length + 1}`, ['id (PK) - UUID', 'name - VARCHAR(255)', 'description - TEXT', 'createdAt - TIMESTAMP', 'updatedAt - TIMESTAMP'], 400, 300);
     const newNodes = [...nodes, newNode];
@@ -262,11 +262,11 @@ export const DataTab = ({ project }: DataTabProps) => {
 
     // Auto-save to database
     try {
-      console.log('💾 Saving new table to database...');
+      console.log('馃捑 Saving new table to database...');
       await saveToDatabase(newNodes, edges);
-      console.log('✅ New table saved successfully');
+      console.log('鉁?New table saved successfully');
     } catch (error) {
-      console.error('❌ Failed to save new table:', error);
+      console.error('鉂?Failed to save new table:', error);
       // Optionally revert the UI change if save failed
       setNodes(nodes);
     }
@@ -278,7 +278,7 @@ export const DataTab = ({ project }: DataTabProps) => {
       return;
     }
 
-    console.log('💾 saveToDatabase called with:', {
+    console.log('馃捑 saveToDatabase called with:', {
       projectId: project.id,
       nodeCount: nodesToSave.length,
       edgeCount: edgesToSave.length
@@ -292,16 +292,16 @@ export const DataTab = ({ project }: DataTabProps) => {
         edges: edgesToSave
       };
 
-      console.log('🔄 Calling projectService.updateProject with data:', updatedData);
+      console.log('馃攧 Calling projectService.updateProject with data:', updatedData);
 
       const result = await projectService.updateProject(project.id, {
         data: [updatedData] // Wrap in array to match UpdateProjectRequest type
       });
 
-      console.log('✅ ERD data saved successfully, result:', result);
+      console.log('鉁?ERD data saved successfully, result:', result);
       setHasUnsavedChanges(false);
     } catch (error) {
-      console.error('❌ Failed to save ERD data:', error);
+      console.error('鉂?Failed to save ERD data:', error);
       console.error('Error details:', error);
       throw error; // Re-throw so calling function can handle it
     } finally {
@@ -331,7 +331,7 @@ export const DataTab = ({ project }: DataTabProps) => {
     event.stopPropagation(); // Prevent triggering the edit modal
     
     if (!project?.id) {
-      console.error('❌ No project ID available for deleting table');
+      console.error('鉂?No project ID available for deleting table');
       return;
     }
 
@@ -343,7 +343,7 @@ export const DataTab = ({ project }: DataTabProps) => {
   const confirmDelete = useCallback(async () => {
     if (!nodeToDelete) return;
 
-    console.log('🗑️ Deleting table:', nodeToDelete);
+    console.log('馃棏锔?Deleting table:', nodeToDelete);
 
     try {
       // Remove node from UI
@@ -358,16 +358,16 @@ export const DataTab = ({ project }: DataTabProps) => {
       setEdges(newEdges);
 
       // Save to database
-      console.log('💾 Saving after table deletion...');
+      console.log('馃捑 Saving after table deletion...');
       await saveToDatabase(newNodes, newEdges);
-      console.log('✅ Table deleted successfully');
+      console.log('鉁?Table deleted successfully');
       showToast('Table deleted successfully', 'success');
       
       // Close confirmation dialog
       setShowDeleteConfirm(false);
       setNodeToDelete(null);
     } catch (error) {
-      console.error('❌ Failed to delete table:', error);
+      console.error('鉂?Failed to delete table:', error);
       // Revert UI changes on error
       setNodes(nodes);
       setEdges(edges);
@@ -956,3 +956,4 @@ const EditTableModal = ({
     </div>
   );
 };
+

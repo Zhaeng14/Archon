@@ -2,7 +2,7 @@
   position: relative;
   width: 84px;
   height: 44px;
-  background: rgba(0, 0, 0, 0.1);
+  background: color-mix(in oklch, var(--primary) 15%, transparent);
   border-radius: 44px;
   padding: 4px;
   border: 1px solid transparent;
@@ -49,80 +49,80 @@
   --accent-color-rgb: 168, 85, 247;
 }
 .toggle-purple.toggle-checked {
-  background: rgba(168, 85, 247, 0.2);
-  border-color: rgba(168, 85, 247, 0.5);
-  box-shadow: 0 0 18px rgba(168, 85, 247, 0.5);
-  animation: toggleGlow 2s ease-in-out infinite;
+  background: color-mix(in oklch, var(--primary) 15%, transparent);
+  border-color: color-mix(in oklch, var(--primary) 50%, transparent);
+  box-shadow: var(--shadow-sm);
+  
 }
 .toggle-purple .toggle-thumb {
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+  box-shadow: var(--shadow-xs);
 }
 .toggle-purple.toggle-checked .toggle-thumb {
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.7);
+  box-shadow: var(--shadow);
 }
 .toggle-green {
   --accent-color-rgb: 16, 185, 129;
 }
 .toggle-green.toggle-checked {
-  background: rgba(16, 185, 129, 0.2);
-  border-color: rgba(16, 185, 129, 0.5);
-  box-shadow: 0 0 18px rgba(16, 185, 129, 0.5);
-  animation: toggleGlow 2s ease-in-out infinite;
+  background: color-mix(in oklch, var(--primary) 15%, transparent);
+  border-color: color-mix(in oklch, var(--primary) 50%, transparent);
+  box-shadow: var(--shadow-sm);
+  
 }
 .toggle-green .toggle-thumb {
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  box-shadow: var(--shadow-xs);
 }
 .toggle-green.toggle-checked .toggle-thumb {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.7);
+  box-shadow: var(--shadow);
 }
 .toggle-pink {
   --accent-color-rgb: 236, 72, 153;
 }
 .toggle-pink.toggle-checked {
-  background: rgba(236, 72, 153, 0.2);
-  border-color: rgba(236, 72, 153, 0.5);
-  box-shadow: 0 0 18px rgba(236, 72, 153, 0.5);
-  animation: toggleGlow 2s ease-in-out infinite;
+  background: color-mix(in oklch, var(--primary) 15%, transparent);
+  border-color: color-mix(in oklch, var(--primary) 50%, transparent);
+  box-shadow: var(--shadow-sm);
+  
 }
 .toggle-pink .toggle-thumb {
-  box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+  box-shadow: var(--shadow-xs);
 }
 .toggle-pink.toggle-checked .toggle-thumb {
-  box-shadow: 0 0 20px rgba(236, 72, 153, 0.7);
+  box-shadow: var(--shadow);
 }
 .toggle-blue {
   --accent-color-rgb: 59, 130, 246;
 }
 .toggle-blue.toggle-checked {
-  background: rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.5);
-  box-shadow: 0 0 18px rgba(59, 130, 246, 0.5);
-  animation: toggleGlow 2s ease-in-out infinite;
+  background: color-mix(in oklch, var(--primary) 15%, transparent);
+  border-color: color-mix(in oklch, var(--primary) 50%, transparent);
+  box-shadow: var(--shadow-sm);
+  
 }
 .toggle-blue .toggle-thumb {
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  box-shadow: var(--shadow-xs);
 }
 .toggle-blue.toggle-checked .toggle-thumb {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
+  box-shadow: var(--shadow);
 }
 .toggle-orange {
   --accent-color-rgb: 249, 115, 22;
 }
 .toggle-orange.toggle-checked {
-  background: rgba(249, 115, 22, 0.2);
-  border-color: rgba(249, 115, 22, 0.5);
-  box-shadow: 0 0 18px rgba(249, 115, 22, 0.5);
-  animation: toggleGlow 2s ease-in-out infinite;
+  background: color-mix(in oklch, var(--primary) 15%, transparent);
+  border-color: color-mix(in oklch, var(--primary) 50%, transparent);
+  box-shadow: var(--shadow-sm);
+  
 }
 .toggle-orange .toggle-thumb {
-  box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+  box-shadow: var(--shadow-xs);
 }
 .toggle-orange.toggle-checked .toggle-thumb {
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.7);
+  box-shadow: var(--shadow);
 }
 /* Dark mode adjustments */
 .dark .toggle-switch {
-  background: rgba(255, 255, 255, 0.1);
+  background: color-mix(in oklch, var(--primary) 15%, transparent);
 }
 /* Disabled state */
 .toggle-disabled {

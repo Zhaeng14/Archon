@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { Crepe, CrepeFeature } from '@milkdown/crepe';
 import '@milkdown/crepe/theme/common/style.css';
 import '@milkdown/crepe/theme/frame.css';
@@ -503,8 +503,8 @@ export const MilkdownEditor: React.FC<MilkdownEditorProps> = ({
                 Reverted
               </span>
             ) : hasChanges ? (
-              <span className="text-sm text-orange-600 dark:text-orange-400 flex items-center gap-2">
-                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-orange-600 dark:text-foreground/70 flex items-center gap-2">
+                <div className="w-2 h-2 bg-muted rounded-full animate-pulse"></div>
                 Unsaved changes
               </span>
             ) : (

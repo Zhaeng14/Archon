@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Copy, Check, Link, Unlink } from 'lucide-react';
-import { NeonButton, type CornerRadius, type GlowIntensity, type ColorOption } from '../ui/NeonButton';
+import { button, type CornerRadius, type GlowIntensity, type ColorOption } from '../ui/button';
 import { motion } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
@@ -342,7 +342,7 @@ export const ButtonPlayground: React.FC = () => {
           <div className="p-6 border-b border-gray-200 dark:border-gray-700">
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Preview</h3>
             <div className="flex items-center justify-center min-h-[150px] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black rounded-lg p-8">
-              <NeonButton
+              <button
                 showLayer2={showLayer2}
                 layer2Inset={layer2Inset}
                 layer1Color={layer1Color}
@@ -357,7 +357,7 @@ export const ButtonPlayground: React.FC = () => {
                 coloredText={coloredText}
               >
                 Click Me
-              </NeonButton>
+              </button>
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { FileCode, Copy, Check } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
@@ -30,11 +30,11 @@ export const IDEGlobalRules = () => {
 
 **MANDATORY: Always complete the full Archon specific task cycle before any coding:**
 
-1. **Check Current Task** → \`archon:manage_task(action="get", task_id="...")\`
-2. **Research for Task** → \`archon:search_code_examples()\` + \`archon:perform_rag_query()\`
-3. **Implement the Task** → Write code based on research
-4. **Update Task Status** → \`archon:manage_task(action="update", task_id="...", update_fields={"status": "review"})\`
-5. **Get Next Task** → \`archon:manage_task(action="list", filter_by="status", filter_value="todo")\`
+1. **Check Current Task** 鈫?\`archon:manage_task(action="get", task_id="...")\`
+2. **Research for Task** 鈫?\`archon:search_code_examples()\` + \`archon:perform_rag_query()\`
+3. **Implement the Task** 鈫?Write code based on research
+4. **Update Task Status** 鈫?\`archon:manage_task(action="update", task_id="...", update_fields={"status": "review"})\`
+5. **Get Next Task** 鈫?\`archon:manage_task(action="list", filter_by="status", filter_value="todo")\`
 6. **Repeat Cycle**
 
 **NEVER skip task updates with the Archon MCP server. NEVER code without checking current tasks first.**
@@ -51,7 +51,7 @@ archon:manage_project(
   github_repo="github.com/user/repo-name"
 )
 
-# Research → Plan → Create Tasks (see workflow below)
+# Research 鈫?Plan 鈫?Create Tasks (see workflow below)
 \`\`\`
 
 ### Scenario 2: Existing Project - Adding Archon
@@ -240,7 +240,7 @@ archon:search_code_examples(query="PostgreSQL connection pooling Node.js", match
 ### Task Status Management
 
 **Status Progression:**
-- \`todo\` → \`doing\` → \`review\` → \`done\`
+- \`todo\` 鈫?\`doing\` 鈫?\`review\` 鈫?\`done\`
 - Use \`review\` status for tasks pending validation/testing
 - Use \`archive\` action for tasks no longer relevant
 
@@ -365,16 +365,16 @@ archon:manage_task(
 
 **MANDATORY: Always complete the full Archon task cycle before any coding:**
 
-1. **Check Current Task** → Review task details and requirements
-2. **Research for Task** → Search relevant documentation and examples
-3. **Implement the Task** → Write code based on research
-4. **Update Task Status** → Move task from "todo" → "doing" → "review"
-5. **Get Next Task** → Check for next priority task
+1. **Check Current Task** 鈫?Review task details and requirements
+2. **Research for Task** 鈫?Search relevant documentation and examples
+3. **Implement the Task** 鈫?Write code based on research
+4. **Update Task Status** 鈫?Move task from "todo" 鈫?"doing" 鈫?"review"
+5. **Get Next Task** 鈫?Check for next priority task
 6. **Repeat Cycle**
 
 **Task Management Rules:**
 - Update all actions to Archon
-- Move tasks from "todo" → "doing" → "review" (not directly to complete)
+- Move tasks from "todo" 鈫?"doing" 鈫?"review" (not directly to complete)
 - Maintain task descriptions and add implementation notes
 - DO NOT MAKE ASSUMPTIONS - check project documentation for questions`;
 
@@ -488,7 +488,7 @@ archon:manage_task(
   };
 
   return (
-    <Card accentColor="blue" className="p-8">
+    <Card accentColor="neutral" className="p-8">
       <div className="space-y-6">
         <div className="flex justify-between items-start">
           <p className="text-sm text-gray-600 dark:text-zinc-400 w-4/5">
@@ -496,7 +496,7 @@ archon:manage_task(
           </p>
           <Button 
             variant="outline" 
-            accentColor="blue" 
+            accentColor="neutral" 
             icon={copied ? <Check className="w-4 h-4 mr-1" /> : <Copy className="w-4 h-4 mr-1" />}
             className="ml-auto whitespace-nowrap px-4 py-2"
             size="md"
@@ -516,7 +516,7 @@ archon:manage_task(
               value="claude"
               checked={selectedRuleType === 'claude'}
               onChange={() => setSelectedRuleType('claude')}
-              className="mr-2 text-blue-500 focus:ring-blue-500"
+              className="mr-2 text-neutral-500 focus:ring-neutral-500"
               aria-label="Claude Code Rules - Comprehensive Archon workflow instructions for Claude"
             />
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Claude Code Rules</span>
@@ -528,15 +528,15 @@ archon:manage_task(
               value="universal"
               checked={selectedRuleType === 'universal'}
               onChange={() => setSelectedRuleType('universal')}
-              className="mr-2 text-blue-500 focus:ring-blue-500"
+              className="mr-2 text-neutral-500 focus:ring-neutral-500"
               aria-label="Universal Agent Rules - Simplified workflow for all other AI agents"
             />
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Universal Agent Rules</span>
           </label>
         </fieldset>
 
-        <div className="border border-blue-200 dark:border-blue-800/30 bg-gradient-to-br from-blue-500/10 to-blue-600/10 backdrop-blur-sm rounded-md h-[400px] flex flex-col">
-          <div className="p-4 pb-2 border-b border-blue-200/50 dark:border-blue-800/30">
+        <div className="border border-border">
+          <div className="p-4 pb-2 border-b border-border">
             <h3 className="text-base font-semibold text-gray-800 dark:text-white">
               {selectedRuleType === 'claude' ? 'Claude Code' : 'Universal Agent'} Rules
             </h3>
@@ -549,14 +549,14 @@ archon:manage_task(
         </div>
 
         {/* Info Note */}
-        <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-md">
+        <div className="p-3 bg-gray-50 dark:bg-gray-900/20 rounded-md">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             <strong>Where to place these rules:</strong>
           </p>
           <ul className="text-sm text-gray-600 dark:text-gray-400 mt-2 ml-4 list-disc">
             <li><strong>Claude Code:</strong> Create a CLAUDE.md file in your project root</li>
             <li><strong>Gemini CLI:</strong> Create a GEMINI.md file in your project root</li>
-            <li><strong>Cursor:</strong> Create .cursorrules file or add to Settings → Rules</li>
+            <li><strong>Cursor:</strong> Create .cursorrules file or add to Settings 鈫?Rules</li>
             <li><strong>Windsurf:</strong> Create .windsurfrules file in project root</li>
             <li><strong>Other IDEs:</strong> Add to your IDE's AI assistant configuration</li>
           </ul>
@@ -565,3 +565,5 @@ archon:manage_task(
     </Card>
   );
 };
+
+

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Settings, Check, Save, Loader, ChevronDown, ChevronUp, Zap, Database, Cpu, Brain } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Input } from '../ui/Input';
@@ -173,7 +173,7 @@ export const FlexibleRAGSettings = ({
 
   if (loading) {
     return (
-      <Card accentColor="green" className="overflow-hidden p-8">
+      <Card accentColor="neutral" className="overflow-hidden p-8">
         <div className="animate-pulse space-y-4">
           <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
           <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
@@ -184,7 +184,7 @@ export const FlexibleRAGSettings = ({
   }
 
   return (
-    <Card accentColor="green" className="overflow-hidden p-8">
+    <Card accentColor="neutral" className="overflow-hidden p-8">
       <p className="text-sm text-gray-600 dark:text-zinc-400 mb-6">
         Configure Retrieval-Augmented Generation (RAG) strategies and model selection for optimal knowledge retrieval.
       </p>
@@ -192,12 +192,12 @@ export const FlexibleRAGSettings = ({
       {/* Model Selection Section */}
       <div className="space-y-6 mb-8">
         <div className="flex items-center gap-2 mb-4">
-          <Brain className="w-5 h-5 text-green-600" />
+          <Brain className="w-5 h-5 text-foreground/70" />
           <h4 className="font-semibold text-gray-800 dark:text-white">Model Selection</h4>
         </div>
         
         {/* Chat Model Selection */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg border border-border">
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
               <Cpu className="w-4 h-4" />
@@ -206,7 +206,7 @@ export const FlexibleRAGSettings = ({
             <Select
               value={selectedChatProvider}
               onChange={e => setSelectedChatProvider(e.target.value)}
-              accentColor="green"
+              accentColor="neutral"
               options={providers.map(p => ({
                 value: p.id,
                 label: `${p.display_name}${p.requires_api_key && !p.has_api_key ? ' (API Key Required)' : ''}`
@@ -221,7 +221,7 @@ export const FlexibleRAGSettings = ({
             <Select
               value={selectedChatModel}
               onChange={e => setSelectedChatModel(e.target.value)}
-              accentColor="green"
+              accentColor="neutral"
               disabled={!selectedChatProvider || chatModels.length === 0}
               options={chatModels.map(m => ({
                 value: m.model_id,
@@ -232,7 +232,7 @@ export const FlexibleRAGSettings = ({
         </div>
 
         {/* Embedding Model Selection */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg border border-border">
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
               <Database className="w-4 h-4" />
@@ -241,7 +241,7 @@ export const FlexibleRAGSettings = ({
             <Select
               value={selectedEmbeddingProvider}
               onChange={e => setSelectedEmbeddingProvider(e.target.value)}
-              accentColor="green"
+              accentColor="neutral"
               options={providers.map(p => ({
                 value: p.id,
                 label: `${p.display_name}${p.requires_api_key && !p.has_api_key ? ' (API Key Required)' : ''}`
@@ -256,7 +256,7 @@ export const FlexibleRAGSettings = ({
             <Select
               value={selectedEmbeddingModel}
               onChange={e => setSelectedEmbeddingModel(e.target.value)}
-              accentColor="green"
+              accentColor="neutral"
               disabled={!selectedEmbeddingProvider || embeddingModels.length === 0}
               options={embeddingModels.map(m => ({
                 value: m.model_id,
@@ -268,8 +268,8 @@ export const FlexibleRAGSettings = ({
 
         {/* Current Selection Display */}
         {selectedModels.chat_provider && selectedModels.embedding_provider && (
-          <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-            <h5 className="text-sm font-medium text-green-800 dark:text-green-200 mb-2">Current Active Models</h5>
+          <div className="p-4 rounded-lg border border-border bg-card">
+            <h5 className="text-sm font-medium text-foreground/80 mb-2">Current Active Models</h5>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="font-medium">Chat:</span> {selectedModels.chat_provider.display_name} - {selectedModels.chat_model?.model_name}
@@ -283,11 +283,11 @@ export const FlexibleRAGSettings = ({
       </div>
 
       {/* RAG Strategy Settings */}
-      <div className="space-y-4 mb-6">
-        <div className="flex items-center gap-2">
-          <Zap className="w-5 h-5 text-green-600" />
-          <h4 className="font-semibold text-gray-800 dark:text-white">RAG Strategy</h4>
-        </div>
+        <div className="space-y-4 mb-6">
+          <div className="flex items-center gap-2">
+            <Zap className="w-5 h-5 text-foreground/70" />
+            <h4 className="font-semibold text-gray-800 dark:text-white">RAG Strategy</h4>
+          </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <label className="flex items-center space-x-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
@@ -367,7 +367,7 @@ export const FlexibleRAGSettings = ({
               })}
               min={1}
               max={10}
-              accentColor="green"
+              accentColor="neutral"
             />
           </div>
         )}
@@ -399,7 +399,7 @@ export const FlexibleRAGSettings = ({
                     ...ragSettings,
                     CRAWL_BATCH_SIZE: parseInt(e.target.value) || 5
                   })}
-                  accentColor="green"
+                  accentColor="neutral"
                 />
                 <Input
                   label="Max Concurrent Crawls"
@@ -409,7 +409,7 @@ export const FlexibleRAGSettings = ({
                     ...ragSettings,
                     CRAWL_MAX_CONCURRENT: parseInt(e.target.value) || 3
                   })}
-                  accentColor="green"
+                  accentColor="neutral"
                 />
                 <Input
                   label="Page Timeout (ms)"
@@ -419,7 +419,7 @@ export const FlexibleRAGSettings = ({
                     ...ragSettings,
                     CRAWL_PAGE_TIMEOUT: parseInt(e.target.value) || 30000
                   })}
-                  accentColor="green"
+                  accentColor="neutral"
                 />
                 <Input
                   label="HTML Delay (ms)"
@@ -429,7 +429,7 @@ export const FlexibleRAGSettings = ({
                     ...ragSettings,
                     CRAWL_DELAY_BEFORE_HTML: parseInt(e.target.value) || 2000
                   })}
-                  accentColor="green"
+                  accentColor="neutral"
                 />
               </div>
             </div>
@@ -460,7 +460,7 @@ export const FlexibleRAGSettings = ({
                     ...ragSettings,
                     DOCUMENT_STORAGE_BATCH_SIZE: parseInt(e.target.value) || 10
                   })}
-                  accentColor="green"
+                  accentColor="neutral"
                 />
                 <Input
                   label="Embedding Batch Size"
@@ -470,7 +470,7 @@ export const FlexibleRAGSettings = ({
                     ...ragSettings,
                     EMBEDDING_BATCH_SIZE: parseInt(e.target.value) || 20
                   })}
-                  accentColor="green"
+                  accentColor="neutral"
                 />
                 <Input
                   label="Memory Threshold %"
@@ -482,7 +482,7 @@ export const FlexibleRAGSettings = ({
                   })}
                   min={50}
                   max={95}
-                  accentColor="green"
+                  accentColor="neutral"
                 />
               </div>
               
@@ -508,7 +508,7 @@ export const FlexibleRAGSettings = ({
         <Button
           variant="primary"
           onClick={handleSaveModelSelection}
-          accentColor="green"
+          accentColor="neutral"
           disabled={saving || !selectedChatProvider || !selectedChatModel || !selectedEmbeddingProvider || !selectedEmbeddingModel}
           className="shadow-emerald-500/20 shadow-sm"
         >

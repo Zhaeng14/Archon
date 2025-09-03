@@ -73,7 +73,7 @@ export const DisconnectScreen: React.FC = () => {
         ctx.lineWidth = 4;
         ctx.stroke();
         
-        // Add enhanced glow effect
+        // Add enhanced soft effect
         ctx.shadowBlur = 40;
         ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, 0.6)`;
         ctx.stroke();
@@ -105,13 +105,13 @@ export const DisconnectScreen: React.FC = () => {
       {/* Glass medallion with frosted effect - made bigger */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative">
-          {/* Glowing orb effect */}
+          {/* softing orb effect */}
           <div 
             className="absolute inset-0 w-96 h-96 rounded-full"
             style={{
               background: 'radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, rgba(168, 85, 247, 0.2) 40%, transparent 70%)',
               filter: 'blur(40px)',
-              animation: 'glow 4s ease-in-out infinite',
+              animation: 'soft 4s ease-in-out infinite',
             }}
           />
           
@@ -135,7 +135,7 @@ export const DisconnectScreen: React.FC = () => {
           {/* Embossed logo - made bigger */}
           <div className="relative w-96 h-96 flex items-center justify-center">
             <img 
-              src="/logo-neon.png" 
+              src="/favicon.png" 
               alt="Archon" 
               className="w-64 h-64 z-10"
               style={{
@@ -146,7 +146,7 @@ export const DisconnectScreen: React.FC = () => {
             />
           </div>
           
-          {/* Disconnected Text - Glass style with red glow */}
+          {/* Disconnected Text - Glass style with red soft */}
           <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
             <div 
               className="px-8 py-4 rounded-full"
@@ -173,3 +173,4 @@ export const DisconnectScreen: React.FC = () => {
     </div>
   );
 };
+

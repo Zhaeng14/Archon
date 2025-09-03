@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+﻿import React, { useEffect, useState, useRef } from 'react';
 import { Send, User, WifiOff, RefreshCw, BookOpen, Search } from 'lucide-react';
 import { ArchonLoadingSpinner, EdgeLitEffect } from '../animations/Animations';
 import { agentChatService, ChatMessage } from '../../services/agentChatService';
@@ -280,7 +280,7 @@ export const ArchonChatPanel: React.FC<ArchonChatPanelProps> = props => {
             <div className="flex items-center">
               {/* Archon Logo - No animation in header */}
               <div className="relative w-8 h-8 mr-3 flex items-center justify-center">
-                <img src="/logo-neon.png" alt="Archon" className="w-6 h-6 z-10 relative" />
+                <img src="/favicon.png" alt="Archon" className="w-6 h-6 z-10 relative" />
               </div>
               <h2 className="text-gray-800 dark:text-white font-medium z-10 relative">
                 Knowledge Base Assistant
@@ -328,7 +328,7 @@ export const ArchonChatPanel: React.FC<ArchonChatPanelProps> = props => {
             
             {/* Error message overlay */}
             {connectionError && connectionStatus !== 'offline' && (
-              <div className="text-xs text-orange-600 bg-orange-100/80 dark:bg-orange-900/30 px-2 py-1 rounded">
+              <div className="text-xs text-foreground bg-muted dark:bg-muted px-2 py-1 rounded">
                 {connectionError}
               </div>
             )}
@@ -347,7 +347,7 @@ export const ArchonChatPanel: React.FC<ArchonChatPanelProps> = props => {
                 <div className="flex items-center mb-1">
                   {message.sender === 'agent' ? (
                     <div className="w-4 h-4 mr-1 flex items-center justify-center">
-                      <img src="/logo-neon.png" alt="Archon" className="w-full h-full" />
+                      <img src="/favicon.png" alt="Archon" className="w-full h-full" />
                     </div>
                   ) : (
                     <User className="w-4 h-4 text-purple-500 mr-1" />
@@ -391,7 +391,7 @@ export const ArchonChatPanel: React.FC<ArchonChatPanelProps> = props => {
               <div className="max-w-[80%] bg-blue-100/80 dark:bg-blue-500/20 border border-blue-200 dark:border-blue-500/30 mr-auto rounded-lg p-3">
                 <div className="flex items-center mb-1">
                   <div className="w-4 h-4 mr-1 flex items-center justify-center">
-                    <img src="/logo-neon.png" alt="Archon" className="w-full h-full" />
+                    <img src="/favicon.png" alt="Archon" className="w-full h-full" />
                   </div>
                   <span className="text-xs text-gray-500 dark:text-zinc-400">
                     {formatTime(new Date())}
@@ -467,7 +467,7 @@ export const ArchonChatPanel: React.FC<ArchonChatPanelProps> = props => {
               {/* Send icon with neon glow */}
               <Send className={`w-4 h-4 text-blue-500 dark:text-blue-400 relative z-10 ${
                 isTyping || connectionStatus !== 'online' ? 'opacity-50' : 'opacity-90 group-hover:opacity-100'
-              } drop-shadow-[0_0_3px_rgba(59,130,246,0.5)] dark:drop-shadow-[0_0_3px_rgba(59,130,246,0.8)] transition-all duration-200`} />
+              }  dark: transition-all duration-200`} />
               {/* Shine effect */}
               <div className="absolute top-0 left-0 w-full h-[1px] bg-white/40 rounded-t-md"></div>
             </button>
@@ -477,3 +477,4 @@ export const ArchonChatPanel: React.FC<ArchonChatPanelProps> = props => {
     </div>
   );
 };
+

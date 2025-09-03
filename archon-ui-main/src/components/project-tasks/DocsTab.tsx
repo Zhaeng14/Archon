@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Plus, X, Search, Upload, Link as LinkIcon, Check, Brain, Save, History, Eye, Edit3, Sparkles } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { knowledgeBaseService, KnowledgeItem } from '../../services/knowledgeBaseService';
@@ -39,7 +39,7 @@ interface Task {
 const DOCUMENT_TEMPLATES = {
   'prp_base': {
     name: 'Feature PRP Template',
-    icon: '🚀',
+    icon: '🧩',
     document_type: 'prp',
     content: {
       document_type: 'prp',
@@ -177,7 +177,7 @@ const DOCUMENT_TEMPLATES = {
   },
   'prp_task': {
     name: 'Task/Bug Fix PRP',
-    icon: '✅',
+    icon: '🧩',
     document_type: 'prp',
     content: {
       document_type: 'prp',
@@ -274,7 +274,7 @@ const DOCUMENT_TEMPLATES = {
   },
   'prp_planning': {
     name: 'Architecture/Planning PRP',
-    icon: '📐',
+    icon: '🧩',
     document_type: 'prp',
     content: {
       document_type: 'prp',
@@ -354,9 +354,9 @@ const DOCUMENT_TEMPLATES = {
           }
         },
         data_flow: [
-          'User interaction → Frontend validation → API call',
-          'Backend processing → Database operations → Response',
-          'Real-time events → Socket.IO → UI updates'
+          'User interaction 鈫?Frontend validation 鈫?API call',
+          'Backend processing 鈫?Database operations 鈫?Response',
+          'Real-time events 鈫?Socket.IO 鈫?UI updates'
         ],
         integration_points: [
           'External APIs and their usage patterns',
@@ -452,7 +452,7 @@ const DOCUMENT_TEMPLATES = {
   // Simple markdown templates for non-PRP documents
   'markdown_doc': {
     name: 'Markdown Document',
-    icon: '📝',
+    icon: '🧩',
     document_type: 'markdown',
     content: {
       markdown: `# Document Title
@@ -474,7 +474,7 @@ Add your content here...
   
   'meeting_notes': {
     name: 'Meeting Notes',
-    icon: '📋',
+    icon: '🧩',
     document_type: 'meeting_notes',
     content: {
       meeting_date: new Date().toISOString().split('T')[0],
@@ -496,9 +496,9 @@ Add your content here...
   }
 };
 
-/* ——————————————————————————————————————————— */
+/* 鈥斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€?*/
 /* Main component                                 */
-/* ——————————————————————————————————————————— */
+/* 鈥斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€?*/
 export const DocsTab = ({
   tasks,
   project
@@ -703,7 +703,7 @@ export const DocsTab = ({
     
     // Cleanup function to disconnect crawl progress service
     return () => {
-      console.log('🧹 DocsTab: Disconnecting crawl progress service');
+      console.log('馃Ч DocsTab: Disconnecting crawl progress service');
       crawlProgressService.disconnect();
     };
   }, [project?.id]);
@@ -824,7 +824,7 @@ export const DocsTab = ({
     setProgressItems(prev => [...prev, newProgressItem]);
     
     const progressCallback = (data: CrawlProgressData) => {
-      console.log(`📨 Progress callback called for ${progressId}:`, data);
+      console.log(`馃摠 Progress callback called for ${progressId}:`, data);
       
       if (data.progressId === progressId) {
         handleProgressUpdate(data);
@@ -842,7 +842,7 @@ export const DocsTab = ({
       await crawlProgressService.streamProgressEnhanced(progressId, {
         onMessage: progressCallback,
         onError: (error) => {
-          console.error(`❌ WebSocket error for ${progressId}:`, error);
+          console.error(`鉂?WebSocket error for ${progressId}:`, error);
           handleProgressError(`Connection error: ${error.message}`);
         }
       }, {
@@ -851,9 +851,9 @@ export const DocsTab = ({
         connectionTimeout: 10000
       });
       
-      console.log(`✅ WebSocket connected successfully for ${progressId}`);
+      console.log(`鉁?WebSocket connected successfully for ${progressId}`);
     } catch (error) {
-      console.error(`❌ Failed to establish WebSocket connection:`, error);
+      console.error(`鉂?Failed to establish WebSocket connection:`, error);
       handleProgressError('Failed to connect to progress updates');
     }
   };
@@ -1113,9 +1113,9 @@ export const DocsTab = ({
 };
 
 
-/* ——————————————————————————————————————————— */
+/* 鈥斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€?*/
 /* Helper components                              */
-/* ——————————————————————————————————————————— */
+/* 鈥斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€斺€?*/
 
 // ArchonEditor component removed - replaced with BlockNoteEditor
 
@@ -1143,10 +1143,10 @@ const TemplateModal: React.FC<{
       <div className="relative p-6 rounded-md backdrop-blur-md w-full max-w-2xl
           bg-gradient-to-b from-white/80 to-white/60 dark:from-white/10 dark:to-black/30
           border border-gray-200 dark:border-zinc-800/50
-          shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)]
+          shadow-none dark:shadow-none
           before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[2px] 
           before:rounded-t-[4px] before:bg-blue-500 
-          before:shadow-[0_0_10px_2px_rgba(59,130,246,0.4)] dark:before:shadow-[0_0_20px_5px_rgba(59,130,246,0.7)]">
+          before:shadow-none dark:before:shadow-none">
         
         <div className="relative z-10">
           <div className="flex justify-between items-center mb-6">
@@ -1217,7 +1217,7 @@ const KnowledgeSection: React.FC<{
       buttonBg: 'bg-blue-500/20',
       buttonHover: 'hover:bg-blue-500/30',
       buttonBorder: 'border-blue-500/40',
-      buttonShadow: 'hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]'
+      buttonShadow: 'hover:shadow-none'
     },
     purple: {
       bg: 'bg-purple-500/10',
@@ -1226,7 +1226,7 @@ const KnowledgeSection: React.FC<{
       buttonBg: 'bg-purple-500/20',
       buttonHover: 'hover:bg-purple-500/30',
       buttonBorder: 'border-purple-500/40',
-      buttonShadow: 'hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]'
+      buttonShadow: 'hover:shadow-none'
     },
     pink: {
       bg: 'bg-pink-500/10',
@@ -1235,22 +1235,22 @@ const KnowledgeSection: React.FC<{
       buttonBg: 'bg-pink-500/20',
       buttonHover: 'hover:bg-pink-500/30',
       buttonBorder: 'border-pink-500/40',
-      buttonShadow: 'hover:shadow-[0_0_15px_rgba(236,72,153,0.3)]'
+      buttonShadow: 'hover:shadow-none'
     },
     orange: {
-      bg: 'bg-orange-500/10',
-      border: 'border-orange-500/30',
-      text: 'text-orange-600 dark:text-orange-400',
-      buttonBg: 'bg-orange-500/20',
-      buttonHover: 'hover:bg-orange-500/30',
-      buttonBorder: 'border-orange-500/40',
-      buttonShadow: 'hover:shadow-[0_0_15px_rgba(249,115,22,0.3)]'
+      bg: 'bg-muted',
+      border: 'border-border',
+      text: 'text-foreground',
+      buttonBg: 'bg-muted',
+      buttonHover: 'hover:bg-muted',
+      buttonBorder: 'border-border',
+      buttonShadow: 'hover:shadow-none'
     }
   };
   return <section>
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-xl font-bold text-gray-800 dark:text-white flex items-center">
-          <span className={`w-2 h-2 rounded-full bg-${color}-400 shadow-[0_0_8px_rgba(59,130,246,0.6)] mr-2`} />
+          <span className={`w-2 h-2 rounded-full bg-${color}-400 shadow-none mr-2`} />
           {title}
         </h3>
         <button onClick={onAddClick} className={`px-3 py-1.5 rounded-md ${colorMap[color].buttonBg} ${colorMap[color].buttonHover} border ${colorMap[color].buttonBorder} ${colorMap[color].text} ${colorMap[color].buttonShadow} transition-all duration-300 flex items-center gap-2`}>
@@ -1306,10 +1306,10 @@ const SourceSelectionModal: React.FC<{
       <div className="relative p-6 rounded-md backdrop-blur-md w-full max-w-3xl
           bg-gradient-to-b from-white/80 to-white/60 dark:from-white/10 dark:to-black/30
           border border-gray-200 dark:border-zinc-800/50
-          shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)]
+          shadow-none dark:shadow-none
           before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[2px] 
           before:rounded-t-[4px] before:bg-blue-500 
-          before:shadow-[0_0_10px_2px_rgba(59,130,246,0.4)] dark:before:shadow-[0_0_20px_5px_rgba(59,130,246,0.7)]
+          before:shadow-none dark:before:shadow-none
           after:content-[''] after:absolute after:top-0 after:left-0 after:right-0 after:h-16
           after:bg-gradient-to-b after:from-blue-100 after:to-white dark:after:from-blue-500/20 dark:after:to-blue-500/5
           after:rounded-t-md after:pointer-events-none">
@@ -1326,7 +1326,7 @@ const SourceSelectionModal: React.FC<{
           <div className="flex gap-3 mb-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
-              <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search sources..." className="w-full bg-white/50 dark:bg-black/70 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-md py-2 pl-10 pr-3 focus:outline-none focus:border-blue-400 focus:shadow-[0_0_10px_rgba(59,130,246,0.2)] transition-all duration-300" />
+              <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search sources..." className="w-full bg-white/50 dark:bg-black/70 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-md py-2 pl-10 pr-3 focus:outline-none focus:border-blue-400 focus:shadow-none transition-all duration-300" />
             </div>
             <Button onClick={onAddSource} variant="primary" accentColor="blue" className="shadow-lg shadow-blue-500/20">
               <Plus className="w-4 h-4 mr-2 inline" />
@@ -1534,3 +1534,6 @@ const AddKnowledgeModal = ({
       </Card>
     </div>;
 };
+
+
+

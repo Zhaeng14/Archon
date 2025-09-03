@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { BarChart3, Settings, Users, Gauge } from 'lucide-react';
 import { SectionProps } from '../types/prp.types';
 import { formatKey } from '../utils/formatters';
@@ -21,7 +21,7 @@ export const MetricsSection: React.FC<SectionProps> = ({
     if (normalizedCategory.includes('admin')) return 'from-blue-400 to-blue-600';
     if (normalizedCategory.includes('business')) return 'from-purple-400 to-purple-600';
     if (normalizedCategory.includes('customer')) return 'from-green-400 to-green-600';
-    if (normalizedCategory.includes('technical')) return 'from-orange-400 to-orange-600';
+    if (normalizedCategory.includes('technical')) return 'from-transparent to-transparent';
     if (normalizedCategory.includes('performance')) return 'from-red-400 to-red-600';
     return 'from-gray-400 to-gray-600';
   };
@@ -40,7 +40,7 @@ export const MetricsSection: React.FC<SectionProps> = ({
         key={`${category}-${index}`}
         className="flex items-center gap-3 p-3 rounded-lg bg-white/50 dark:bg-black/30 border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-200 group"
       >
-        <div className={`p-2 rounded-lg bg-gradient-to-br ${getCategoryColor(category)} text-white shadow-md group-hover:scale-110 transition-transform duration-200`}>
+        <div className={`p-2 rounded-lg bg-card ${getCategoryColor(category)} text-white shadow-md group-hover:scale-110 transition-transform duration-200`}>
           {getCategoryIcon(category)}
         </div>
         <p className="text-sm text-gray-700 dark:text-gray-300 flex-1">{metric}</p>
@@ -72,3 +72,4 @@ export const MetricsSection: React.FC<SectionProps> = ({
     </div>
   );
 };
+

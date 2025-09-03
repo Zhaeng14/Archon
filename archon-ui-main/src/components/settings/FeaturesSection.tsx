@@ -273,7 +273,7 @@ export const FeaturesSection = () => {
           */}
 
           {/* Pydantic Logfire Toggle */}
-          <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-orange-500/10 to-orange-600/5 backdrop-blur-sm border border-orange-500/20 shadow-lg">
+          <div className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-border shadow-sm">
             <div className="flex-1 min-w-0">
               <p className="font-medium text-gray-800 dark:text-white">
                 Pydantic Logfire

@@ -58,7 +58,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
           
           // Check if backend is truly ready (not just started)
           if (healthData.ready === true) {
-            console.log('✅ Backend is fully initialized');
+            console.log('�?Backend is fully initialized');
             setBackendReady(true);
             setBackendStartupFailed(false);
           } else {
@@ -167,19 +167,19 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
     checkOnboarding();
   }, [backendReady, backendStartupFailed, location.pathname, navigate, showToast]);
 
-  return <div className="relative min-h-screen bg-white dark:bg-black overflow-hidden">
+  return <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
       {/* Show backend startup error if backend failed to start */}
       {backendStartupFailed && <BackendStartupError />}
       
       {/* Fixed full-page background grid that doesn't scroll */}
-      <div className="fixed inset-0 neon-grid pointer-events-none z-0"></div>
+      <div className="fixed inset-0 archon-bg pointer-events-none z-0"></div>
       {/* Floating Navigation */}
       <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50">
         <SideNavigation />
       </div>
       {/* Main Content Area - no left margin to allow grid to extend full width */}
       <div className="relative flex-1 pl-[100px] z-10">
-        <div className="container mx-auto px-8 relative">
+        <div className="w-full max-w-none px-6 relative">
           <div className="min-h-screen pt-8 pb-16">{children}</div>
         </div>
       </div>
@@ -190,7 +190,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
             disabled
             className="w-14 h-14 rounded-full flex items-center justify-center backdrop-blur-md bg-gradient-to-b from-gray-100/80 to-gray-50/60 dark:from-gray-700/30 dark:to-gray-800/30 shadow-[0_0_10px_rgba(156,163,175,0.3)] dark:shadow-[0_0_10px_rgba(156,163,175,0.3)] cursor-not-allowed opacity-60 overflow-hidden border border-gray-300 dark:border-gray-600" 
             aria-label="Knowledge Assistant - Coming Soon">
-            <img src="/logo-neon.png" alt="Archon" className="w-7 h-7 grayscale opacity-50" />
+            <img src="/favicon.png" alt="Archon" className="w-7 h-7 grayscale opacity-50" />
           </button>
           {/* Tooltip */}
           <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-800 dark:bg-gray-900 text-white text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
@@ -213,3 +213,6 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
       </div>
     </div>;
 };
+
+
+

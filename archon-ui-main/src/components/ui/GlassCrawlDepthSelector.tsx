@@ -105,7 +105,7 @@ export const GlassCrawlDepthSelector: React.FC<GlassCrawlDepthSelectorProps> = (
               <span className={cn(
                 "relative z-20 text-base font-bold transition-all duration-300",
                 isSelected 
-                  ? "text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" 
+                  ? "text-blue-300 " 
                   : "text-gray-400 dark:text-gray-500"
               )}>
                 {level}

@@ -117,7 +117,7 @@ export const SettingsPage = () => {
           className="text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-3"
           variants={titleVariants}
         >
-          <Settings className="w-7 h-7 text-blue-500 filter drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+          <Settings className="w-7 h-7 text-foreground/70" />
           Settings
         </motion.h1>
       </motion.div>
@@ -170,7 +170,7 @@ export const SettingsPage = () => {
             <CollapsibleSettingsCard
               title="Model Providers"
               icon={Database}
-              accentColor="blue"
+              accentColor="neutral"
               storageKey="model-providers"
               defaultExpanded={false}
             >
@@ -181,7 +181,7 @@ export const SettingsPage = () => {
             <CollapsibleSettingsCard
               title="RAG Settings"
               icon={Brain}
-              accentColor="green"
+              accentColor="neutral"
               storageKey="rag-settings"
               defaultExpanded={true}
             >
@@ -195,7 +195,7 @@ export const SettingsPage = () => {
             <CollapsibleSettingsCard
               title="Code Extraction"
               icon={Code}
-              accentColor="orange"
+              accentColor="neutral"
               storageKey="code-extraction"
               defaultExpanded={true}
             >
@@ -240,15 +240,15 @@ export const SettingsPage = () => {
       <motion.div variants={itemVariants} className="mt-12 flex justify-center">
         <button
           onClick={() => setShowButtonPlayground(!showButtonPlayground)}
-          className="relative w-8 h-8 rounded-full border border-blue-400/30 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-200 flex items-center justify-center group"
+          className="relative w-8 h-8 rounded-full border border-gray-400/30 bg-gray-500/5 hover:bg-gray-500/10 transition-all duration-200 flex items-center justify-center group"
           title="Toggle Button Playground"
         >
-          <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-0 rounded-full bg-gray-500/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
           <motion.div
             animate={{ rotate: showButtonPlayground ? 180 : 0 }}
             transition={{ duration: 0.2 }}
           >
-            <ChevronDown className="w-4 h-4 text-blue-400/50" />
+            <ChevronDown className="w-4 h-4 text-gray-400/70" />
           </motion.div>
         </button>
       </motion.div>

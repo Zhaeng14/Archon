@@ -26,8 +26,8 @@
   z-index: 10;
   border-radius: inherit;
 }
-/* Card neon line */
-.card-neon-line {
+/* Card soft line */
+.card-soft-line {
   position: absolute;
   top: 0;
   left: 0;
@@ -36,10 +36,10 @@
   transition: all 0.3s ease;
   transform: translateZ(40px);
 }
-.card-neon-line-pulse {
-  animation: neon-pulse 2s infinite ease-in-out;
+.card-soft-line-pulse {
+  animation: soft-pulse 2s infinite ease-in-out;
 }
-@keyframes neon-pulse {
+@keyframes soft-pulse {
   0%, 100% { opacity: 0.7; filter: brightness(1); }
   50% { opacity: 1; filter: brightness(1.3); }
 }

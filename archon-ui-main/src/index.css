@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Modern OKLCH color system - Light mode */
+    /* 温暖柔和配色系统 - 浅色模式 */
     --background: oklch(0.9818 0.0054 95.0986);
     --foreground: oklch(0.3438 0.0269 95.7226);
     --card: oklch(0.9818 0.0054 95.0986);
@@ -19,16 +19,20 @@
     --muted-foreground: oklch(0.6059 0.0075 97.4233);
     --accent: oklch(0.9245 0.0138 92.9892);
     --accent-foreground: oklch(0.2671 0.0196 98.9390);
-    --destructive: oklch(0.6368 0.2078 25.3313);
+    --destructive: oklch(0.1908 0.0020 106.5859);
     --destructive-foreground: oklch(1.0000 0 0);
     --border: oklch(0.8847 0.0069 97.3627);
     --input: oklch(0.7621 0.0156 98.3528);
     --ring: oklch(0.6171 0.1375 39.0427);
-    --chart-1: oklch(0.5583 0.1276 42.9956);
-    --chart-2: oklch(0.6898 0.1581 290.4107);
-    --chart-3: oklch(0.8816 0.0276 93.1280);
-    --chart-4: oklch(0.8822 0.0403 298.1792);
-    --chart-5: oklch(0.5608 0.1348 42.0584);
+    
+    /* 温暖图表颜色 - 去除霓虹�?*/
+    --chart-1: oklch(0.5583 0.1276 42.9956);   /* 主色调橙 */
+    --chart-2: oklch(0.6898 0.1581 290.4107);       /* 柔和�?*/
+    --chart-3: oklch(0.8816 0.0276 93.1280);       /* 柔和�?*/
+    --chart-4: oklch(0.8822 0.0403 298.1792);       /* 柔和�?*/
+    --chart-5: oklch(0.5608 0.1348 42.0584);       /* 柔和�?*/
+    
+    /* 侧边栏配�?*/
     --sidebar: oklch(0.9663 0.0080 98.8792);
     --sidebar-foreground: oklch(0.3590 0.0051 106.6524);
     --sidebar-primary: oklch(0.6171 0.1375 39.0427);
@@ -37,16 +41,29 @@
     --sidebar-accent-foreground: oklch(0.3250 0 0);
     --sidebar-border: oklch(0.9401 0 0);
     --sidebar-ring: oklch(0.7731 0 0);
+    
+    /* 字体系统 */
+    --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    
     --radius: 0.5rem;
-    /* Custom accent colors */
-    --purple-accent: oklch(0.6171 0.1375 290);
-    --green-accent: oklch(0.5583 0.1276 160);
-    --pink-accent: oklch(0.6898 0.1581 330);
-    --blue-accent: oklch(0.5608 0.1348 217);
+    
+    /* 阴影系统 */
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
   }
 
   .dark {
-    /* Modern OKLCH color system - Dark mode */
+    /* 温暖柔和配色系统 - 深色模式 */
     --background: oklch(0.2679 0.0036 106.6427);
     --foreground: oklch(0.8074 0.0142 93.0137);
     --card: oklch(0.2679 0.0036 106.6427);
@@ -61,16 +78,20 @@
     --muted-foreground: oklch(0.7713 0.0169 99.0657);
     --accent: oklch(0.2130 0.0078 95.4245);
     --accent-foreground: oklch(0.9663 0.0080 98.8792);
-    --destructive: oklch(0.6368 0.2078 25.3313);
+    --destructive: oklch(0.1908 0.0020 106.5859);
     --destructive-foreground: oklch(1.0000 0 0);
     --border: oklch(0.3618 0.0101 106.8928);
     --input: oklch(0.4336 0.0113 100.2195);
     --ring: oklch(0.6724 0.1308 38.7559);
-    --chart-1: oklch(0.5583 0.1276 42.9956);
-    --chart-2: oklch(0.6898 0.1581 290.4107);
-    --chart-3: oklch(0.2130 0.0078 95.4245);
-    --chart-4: oklch(0.3074 0.0516 289.3230);
-    --chart-5: oklch(0.5608 0.1348 42.0584);
+    
+    /* 深色模式图表颜色 - 去除霓虹�?*/
+    --chart-1: oklch(0.5583 0.1276 42.9956);   /* 主色调橙 */
+    --chart-2: oklch(0.6898 0.1581 290.4107);       /* 柔和�?*/
+    --chart-3: oklch(0.8816 0.0276 93.1280);       /* 柔和�?*/
+    --chart-4: oklch(0.8822 0.0403 298.1792);       /* 柔和�?*/
+    --chart-5: oklch(0.5608 0.1348 42.0584);       /* 柔和�?*/
+    
+    /* 深色侧边栏配�?*/
     --sidebar: oklch(0.2357 0.0024 67.7077);
     --sidebar-foreground: oklch(0.8074 0.0142 93.0137);
     --sidebar-primary: oklch(0.3250 0 0);
@@ -79,12 +100,23 @@
     --sidebar-accent-foreground: oklch(0.8074 0.0142 93.0137);
     --sidebar-border: oklch(0.9401 0 0);
     --sidebar-ring: oklch(0.7731 0 0);
+    
+    /* 字体系统 */
+    --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    
     --radius: 0.5rem;
-    /* Custom accent colors for dark mode */
-    --purple-accent: oklch(0.6724 0.1308 290);
-    --green-accent: oklch(0.5583 0.1276 160);
-    --pink-accent: oklch(0.6898 0.1581 330);
-    --blue-accent: oklch(0.5608 0.1348 217);
+    
+    /* 深色模式阴影 */
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.15);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.15);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.20), 0 1px 2px -1px hsl(0 0% 0% / 0.20);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.20), 0 1px 2px -1px hsl(0 0% 0% / 0.20);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.20), 0 2px 4px -1px hsl(0 0% 0% / 0.20);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.20), 0 4px 6px -1px hsl(0 0% 0% / 0.20);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.20), 0 8px 10px -1px hsl(0 0% 0% / 0.20);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.35);
   }
 }
 
@@ -122,324 +154,175 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
-  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
-  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
-  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-
-  --tracking-normal: 0em;
-  --spacing: 0.25rem;
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-}
-@layer components {
-  .neon-grid {
-    @apply bg-[linear-gradient(to_right,#a855f720_1px,transparent_1px),linear-gradient(to_bottom,#a855f720_1px,transparent_1px)] bg-[size:40px_40px];
-    @apply dark:bg-[linear-gradient(to_right,#a855f730_1px,transparent_1px),linear-gradient(to_bottom,#a855f730_1px,transparent_1px)];
-  }
-  .neon-divider-h {
-    @apply h-[1px] w-full;
-  }
-  .neon-divider-h.purple {
-    @apply bg-purple-500;
-  }
-  .neon-divider-h.green {
-    @apply bg-emerald-500;
-  }
-  .neon-divider-h.pink {
-    @apply bg-pink-500;
-  }
-  .neon-divider-h.blue {
-    @apply bg-blue-500;
-  }
-  .neon-divider-v {
-    @apply w-[1px] h-full;
-  }
-  .neon-divider-v.purple {
-    @apply bg-purple-500;
-  }
-  .neon-divider-v.green {
-    @apply bg-emerald-500;
-  }
-  .neon-divider-v.pink {
-    @apply bg-pink-500;
-  }
-  .neon-divider-v.blue {
-    @apply bg-blue-500;
-  }
-  .knowledge-item-card {
-    @apply relative backdrop-blur-md bg-gradient-to-b from-white/10 to-black/30 border border-purple-500/30 rounded-md p-4 transition-all duration-300;
-    @apply before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-purple-500 before:shadow-[0_0_20px_5px_rgba(168,85,247,0.7)];
-    @apply after:content-[""] after:absolute after:top-0 after:left-0 after:right-0 after:h-16 after:bg-gradient-to-b after:from-purple-500/20 after:to-purple-500/5 after:rounded-t-md after:pointer-events-none;
-    @apply shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)];
-  }
-  .knowledge-item-card:hover {
-    @apply border-purple-500/70 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.9)] before:shadow-[0_0_25px_8px_rgba(168,85,247,0.8)];
-    @apply translate-y-[-2px];
-  }
-  /* Glassmorphism utility classes */
-  .glass {
-    /* Light mode (base) styles */
-    @apply backdrop-blur-md bg-gradient-to-b from-white/80 to-white/60 border border-gray-200 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)];
-    /* Dark mode overrides */
-    @apply dark:bg-gradient-to-b dark:from-white/10 dark:to-black/30 dark:border-zinc-800/50 dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)];
-  }
-  .glass-purple {
-    /* Light mode (base) styles */
-    @apply backdrop-blur-md bg-gradient-to-b from-white/80 to-white/60 border border-purple-300 shadow-[0_10px_30px_-15px_rgba(168,85,247,0.15)];
-    @apply before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-purple-500 before:shadow-[0_0_10px_2px_rgba(168,85,247,0.4)];
-    @apply after:content-[""] after:absolute after:top-0 after:left-0 after:right-0 after:h-16 after:bg-gradient-to-b after:from-purple-100 after:to-white after:rounded-t-md after:pointer-events-none;
-    /* Dark mode overrides */
-    @apply dark:from-white/10 dark:to-black/30 dark:border-purple-500/30 dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)];
-    @apply dark:before:shadow-[0_0_20px_5px_rgba(168,85,247,0.7)];
-    @apply dark:after:from-purple-500/20 dark:after:to-purple-500/5;
-  }
-  .glass-green {
-    /* Light mode (base) styles */
-    @apply backdrop-blur-md bg-gradient-to-b from-white/80 to-white/60 border border-emerald-300 shadow-[0_10px_30px_-15px_rgba(16,185,129,0.15)];
-    @apply before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-emerald-500 before:shadow-[0_0_10px_2px_rgba(16,185,129,0.4)];
-    @apply after:content-[""] after:absolute after:top-0 after:left-0 after:right-0 after:h-16 after:bg-gradient-to-b after:from-emerald-100 after:to-white after:rounded-t-md after:pointer-events-none;
-    /* Dark mode overrides */
-    @apply dark:from-white/10 dark:to-black/30 dark:border-emerald-500/30 dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)];
-    @apply dark:before:shadow-[0_0_20px_5px_rgba(16,185,129,0.7)];
-    @apply dark:after:from-emerald-500/20 dark:after:to-emerald-500/5;
-  }
-  .glass-pink {
-    /* Light mode (base) styles */
-    @apply backdrop-blur-md bg-gradient-to-b from-white/80 to-white/60 border border-pink-300 shadow-[0_10px_30px_-15px_rgba(236,72,153,0.15)];
-    @apply before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-pink-500 before:shadow-[0_0_10px_2px_rgba(236,72,153,0.4)];
-    @apply after:content-[""] after:absolute after:top-0 after:left-0 after:right-0 after:h-16 after:bg-gradient-to-b after:from-pink-100 after:to-white after:rounded-t-md after:pointer-events-none;
-    /* Dark mode overrides */
-    @apply dark:from-white/10 dark:to-black/30 dark:border-pink-500/30 dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)];
-    @apply dark:before:shadow-[0_0_20px_5px_rgba(236,72,153,0.7)];
-    @apply dark:after:from-pink-500/20 dark:after:to-pink-500/5;
-  }
-  .glass-blue {
-    /* Light mode (base) styles */
-    @apply backdrop-blur-md bg-gradient-to-b from-white/80 to-white/60 border border-blue-300 shadow-[0_10px_30px_-15px_rgba(59,130,246,0.15)];
-    @apply before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-blue-500 before:shadow-[0_0_10px_2px_rgba(59,130,246,0.4)];
-    @apply after:content-[""] after:absolute after:top-0 after:left-0 after:right-0 after:h-16 after:bg-gradient-to-b after:from-blue-100 after:to-white after:rounded-t-md after:pointer-events-none;
-    /* Dark mode overrides */
-    @apply dark:from-white/10 dark:to-black/30 dark:border-blue-500/30 dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)];
-    @apply dark:before:shadow-[0_0_20px_5px_rgba(59,130,246,0.7)];
-    @apply dark:after:from-blue-500/20 dark:after:to-blue-500/5;
-  }
-  /* Hide scrollbar but allow scrolling */
-  .hide-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
-  }
-  /* Card flip animations */
-  .flip-card .backface-hidden {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-  .rotate-y-180 {
-    transform: rotateY(180deg);
-  }
-  .transform-style-preserve-3d {
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-  }
-}
-/* Animation delays */
-.animation-delay-150 {
-  animation-delay: 150ms;
-}
-.animation-delay-300 {
-  animation-delay: 300ms;
+*,
+*::before,
+*::after {
+  border-color: var(--border);
 }
 
-/* Card expansion animation */
-.card-collapsed {
-  height: 140px;
-  transition: height 0.5s ease-in-out;
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
 
-.card-expanded {
-  height: 280px;
-  transition: height 0.5s ease-in-out;
+/* 覆盖霓虹色样�?*/
+.neon-grid { display: none !important; }
+
+.neon-divider-h.purple,
+.neon-divider-h.green,
+.neon-divider-h.pink,
+.neon-divider-h.blue {
+  background-color: var(--primary);
+  opacity: 0.3;
 }
 
-/* Ensure scrollable content in expanded cards */
-.card-expanded .flex-1.overflow-hidden > .absolute {
-  /* Removed max-height to allow full scrolling */
+.neon-divider-v.purple,
+.neon-divider-v.green,
+.neon-divider-v.pink,
+.neon-divider-v.blue {
+  background-color: var(--primary);
+  opacity: 0.3;
 }
 
-/* Screensaver Animations */
-@keyframes pulse {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
+/* 确保文字在背景上可读 */
+.bg-background {
+  color: var(--foreground);
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  33% {
-    transform: translateY(-30px) translateX(10px);
-  }
-  66% {
-    transform: translateY(30px) translateX(-10px);
-  }
+.bg-card {
+  color: var(--card-foreground);
 }
 
-@keyframes breathe {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
+.bg-muted {
+  color: var(--muted-foreground);
 }
 
-@keyframes hologram {
-  0%, 100% {
-    opacity: 1;
-    transform: rotateY(0deg) scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: rotateY(10deg) scale(1.02);
-  }
+.bg-secondary {
+  color: var(--secondary-foreground);
 }
 
-@keyframes scan {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
+/* 修复按钮对比�?*/
+.bg-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
 }
 
-@keyframes etherealFloat {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-20px) scale(1.05);
-    opacity: 0.8;
-  }
+.text-primary {
+  color: var(--primary);
 }
 
-@keyframes glow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
+.border-primary {
+  border-color: var(--primary);
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px 10px rgba(59, 130, 246, 0.5),
-                0 0 40px 20px rgba(59, 130, 246, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px 15px rgba(59, 130, 246, 0.7),
-                0 0 60px 30px rgba(59, 130, 246, 0.4);
-  }
+/* 确保链接可见�?*/
+a {
+  color: var(--primary);
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+a:hover {
+  color: var(--primary);
+  opacity: 0.8;
 }
 
-/* Custom scrollbar styles */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
+/* 禁用所有霓虹效�?*/
+.glass {
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: none;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
+/* 移除所有彩色高�?*/
+.text-purple-500,
+.text-green-500,
+.text-pink-500,
+.text-blue-500,
+.text-violet-500,
+.text-emerald-500,
+.text-rose-500,
+.text-sky-500 {
+  color: var(--primary) !important;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
+.bg-purple-500,
+.bg-green-500,
+.bg-pink-500,
+.bg-blue-500,
+.bg-violet-500,
+.bg-emerald-500,
+.bg-rose-500,
+.bg-sky-500 {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(59, 130, 246, 0.3);
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
+/* 强制覆盖所有可能的霓虹�?*/
+[class*="text-purple-"],
+[class*="text-green-"],
+[class*="text-pink-"],
+[class*="text-blue-"],
+[class*="text-violet-"],
+[class*="text-emerald-"],
+[class*="text-rose-"],
+[class*="text-sky-"],
+[class*="text-cyan-"],
+[class*="text-teal-"],
+[class*="text-lime-"],
+[class*="text-amber-"],
+[class*="text-orange-"],
+[class*="text-red-"],
+[class*="text-yellow-"],
+[class*="text-indigo-"] {
+  color: var(--primary) !important;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(59, 130, 246, 0.5);
+[class*="bg-purple-"],
+[class*="bg-green-"],
+[class*="bg-pink-"],
+[class*="bg-blue-"],
+[class*="bg-violet-"],
+[class*="bg-emerald-"],
+[class*="bg-rose-"],
+[class*="bg-sky-"],
+[class*="bg-cyan-"],
+[class*="bg-teal-"],
+[class*="bg-lime-"],
+[class*="bg-amber-"],
+[class*="bg-orange-"],
+[class*="bg-red-"],
+[class*="bg-yellow-"],
+[class*="bg-indigo-"] {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
 }
 
-.dark .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(59, 130, 246, 0.4);
-}
 
-.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(59, 130, 246, 0.6);
-}
 
-/* Thin scrollbar styles */
-.scrollbar-thin {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
-}
 
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
 
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
-}
 
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-  border-radius: 3px;
-}
+/* Tone down orange variants for readability */
+[class*="text-orange-"]{ color: color-mix(in oklch, var(--foreground) 92%, var(--primary) 8%) !important }
+[class*="bg-orange-"]{ background-color: color-mix(in oklch, var(--background) 96%, var(--primary) 4%) !important; color: var(--foreground) !important }
 
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(156, 163, 175, 0.7);
-}
-
-.dark .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgba(75, 85, 99, 0.5);
-}
-
-.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(75, 85, 99, 0.7);
-}

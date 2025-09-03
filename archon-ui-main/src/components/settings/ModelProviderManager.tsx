@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Settings, Plus, Edit3, Trash2, Save, X, Eye, EyeOff, Lock, Database } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card } from '../ui/Card';
@@ -136,7 +136,7 @@ export const ModelProviderManager: React.FC<ModelProviderManagerProps> = () => {
 
   if (loading) {
     return (
-      <Card accentColor="blue" className="p-8">
+      <Card accentColor="neutral" className="p-8">
         <div className="animate-pulse space-y-4">
           <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3"></div>
           <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
@@ -167,7 +167,7 @@ export const ModelProviderManager: React.FC<ModelProviderManagerProps> = () => {
             provider_type: 'openai_compatible',
             description: ''
           })}
-          accentColor="blue"
+          accentColor="neutral"
         >
           <Plus className="w-4 h-4 mr-2" />
           Add Provider
@@ -176,7 +176,7 @@ export const ModelProviderManager: React.FC<ModelProviderManagerProps> = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* Providers Panel */}
-        <Card accentColor="blue" className="p-6">
+        <Card accentColor="neutral" className="p-6">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <Settings className="w-5 h-5" />
             Providers
@@ -191,7 +191,7 @@ export const ModelProviderManager: React.FC<ModelProviderManagerProps> = () => {
                 key={provider.id}
                 className={`p-4 rounded-lg border transition-all cursor-pointer ${
                   selectedProvider === provider.id
-                    ? 'border-blue-300 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-700'
+                    ? 'border-border bg-muted'
                     : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                 }`}
                 onClick={() => setSelectedProvider(provider.id)}
@@ -240,7 +240,7 @@ export const ModelProviderManager: React.FC<ModelProviderManagerProps> = () => {
         </Card>
 
         {/* Models Panel */}
-        <Card accentColor="green" className="p-6">
+        <Card accentColor="neutral" className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold flex items-center gap-2">
               <Database className="w-5 h-5" />
@@ -260,7 +260,7 @@ export const ModelProviderManager: React.FC<ModelProviderManagerProps> = () => {
                   max_tokens: null,
                   description: ''
                 })}
-                accentColor="green"
+                accentColor="neutral"
                 size="sm"
               >
                 <Plus className="w-3 h-3 mr-1" />
@@ -281,13 +281,13 @@ export const ModelProviderManager: React.FC<ModelProviderManagerProps> = () => {
                       {type} Models
                     </h4>
                     {typeModels.map((model) => (
-                      <div key={model.id} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <div key={model.id} className="p-3 rounded-lg border border-border bg-card">
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
                             <div className="flex items-center gap-2">
                               <span className="font-medium">{model.model_name}</span>
                               {model.is_default && (
-                                <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs rounded-full">
+                                <span className="px-2 py-0.5 text-xs rounded-full border border-border text-foreground/70">
                                   Default
                                 </span>
                               )}
@@ -452,7 +452,7 @@ const ProviderEditModal: React.FC<ProviderEditModalProps> = ({ provider, onSave,
           </label>
 
           <div className="flex gap-3 pt-4">
-            <Button type="submit" variant="primary" accentColor="blue" className="flex-1">
+            <Button type="submit" variant="primary" accentColor="neutral" className="flex-1">
               <Save className="w-4 h-4 mr-2" />
               Save
             </Button>
@@ -560,7 +560,7 @@ const ModelEditModal: React.FC<ModelEditModalProps> = ({ model, onSave, onCancel
           </label>
 
           <div className="flex gap-3 pt-4">
-            <Button type="submit" variant="primary" accentColor="green" className="flex-1">
+            <Button type="submit" variant="primary" accentColor="neutral" className="flex-1">
               <Save className="w-4 h-4 mr-2" />
               Save
             </Button>
@@ -574,3 +574,4 @@ const ModelEditModal: React.FC<ModelEditModalProps> = ({ model, onSave, onCancel
     </motion.div>
   );
 };
+

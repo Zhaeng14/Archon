@@ -119,14 +119,14 @@ export const DraggableTaskCard = ({
         className={`relative w-full min-h-[140px] transform-style-preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}
       >
         {/* Front side with subtle hover effect */}
-        <div className={`absolute w-full h-full backface-hidden ${cardBaseStyles} ${transitionStyles} ${hoverEffectClasses} ${highlightGlow} rounded-lg`}>
+        <div className={`absolute w-full h-full backface-hidden overflow-hidden ${cardBaseStyles} ${transitionStyles} ${hoverEffectClasses} ${highlightGlow} rounded-lg`}>
           {/* Priority indicator */}
           <div className={`absolute left-0 top-0 bottom-0 w-[3px] ${getOrderColor(task.task_order)} ${getOrderGlow(task.task_order)} rounded-l-lg opacity-80 group-hover:w-[4px] group-hover:opacity-100 transition-all duration-300`}></div>
           
           {/* Content container with fixed padding - exactly matching back side structure */}
           <div className="flex flex-col h-full p-3">
             <div className="flex items-center gap-2 mb-2 pl-1.5">
-              <div className="px-2 py-1 rounded-md text-xs font-medium flex items-center gap-1 backdrop-blur-md" 
+              <div className="px-2 py-1 rounded-md text-xs font-medium flex items-center gap-1 backdrop-blur-md max-w-[55%] truncate" 
                    style={{
                      backgroundColor: `${task.featureColor}20`,
                      color: task.featureColor,
@@ -134,7 +134,7 @@ export const DraggableTaskCard = ({
                    }}
               >
                 <Tag className="w-3 h-3" />
-                {task.feature}
+                <span className="truncate">{task.feature}</span>
               </div>
               
               {/* Task order display */}
@@ -143,7 +143,7 @@ export const DraggableTaskCard = ({
               </div>
               
               {/* Action buttons group */}
-              <div className="ml-auto flex items-center gap-1.5">
+              <div className="ml-auto flex items-center gap-1.5 relative z-10">
                 <button 
                   type="button"
                   onClick={(e) => {
@@ -180,7 +180,7 @@ export const DraggableTaskCard = ({
               </div>
             </div>
             
-            <h4 className="text-xs font-medium text-gray-900 dark:text-white mb-2 pl-1.5 line-clamp-2 overflow-hidden" title={task.title}>
+            <h4 className="text-xs font-medium text-gray-900 dark:text-white mb-2 pl-1.5 line-clamp-2 overflow-hidden break-words max-w-[calc(100%-80px)]" title={task.title}>
               {task.title}
             </h4>
             
@@ -222,14 +222,14 @@ export const DraggableTaskCard = ({
         
         {/* Back side */}
         {/* Back side with same hover effect */}
-        <div className={`absolute w-full h-full backface-hidden ${cardBaseStyles} ${transitionStyles} ${hoverEffectClasses} ${highlightGlow} rounded-lg rotate-y-180 ${isDragging ? 'opacity-0' : 'opacity-100'}`}>
+        <div className={`absolute w-full h-full backface-hidden overflow-hidden ${cardBaseStyles} ${transitionStyles} ${hoverEffectClasses} ${highlightGlow} rounded-lg rotate-y-180 ${isDragging ? 'opacity-0' : 'opacity-100'}`}>
           {/* Priority indicator */}
           <div className={`absolute left-0 top-0 bottom-0 w-[3px] ${getOrderColor(task.task_order)} ${getOrderGlow(task.task_order)} rounded-l-lg opacity-80 group-hover:w-[4px] group-hover:opacity-100 transition-all duration-300`}></div>
           
           {/* Content container with fixed padding */}
-          <div className="flex flex-col h-full p-3">
+          <div className="flex flex-col h-full p-3 min-h-[140px]">
             <div className="flex items-center gap-2 mb-2 pl-1.5">
-              <h4 className="text-xs font-medium text-gray-900 dark:text-white truncate max-w-[75%]">
+              <h4 className="text-xs font-medium text-gray-900 dark:text-white truncate break-words flex-1 min-w-0 pr-2">
                 {task.title}
               </h4>
               <button 
@@ -243,10 +243,14 @@ export const DraggableTaskCard = ({
               </button>
             </div>
             
-            {/* Description container with absolute positioning inside parent bounds */}
-            <div className="flex-1 overflow-hidden relative">
-              <div className="absolute inset-0 overflow-y-auto hide-scrollbar pl-1.5 pr-2">
-                <p className="text-xs text-gray-700 dark:text-gray-300 break-words whitespace-pre-wrap" style={{fontSize: '11px'}}>{task.description}</p>
+            {/* Description container with proper overflow handling */}
+            <div className="flex-1 overflow-hidden relative min-h-0">
+              <div className="h-full overflow-y-auto hide-scrollbar pl-1.5 pr-2 py-1">
+                <p className="text-xs text-gray-700 dark:text-gray-300 break-words whitespace-pre-wrap leading-relaxed" 
+                   style={{fontSize: '11px', maxHeight: 'calc(100% - 10px)', overflow: 'hidden', 
+                           display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical'}}>
+                  {task.description}
+                </p>
               </div>
             </div>
           </div>

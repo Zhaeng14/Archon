@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Settings, Check, Save, Loader, ChevronDown, ChevronUp, Zap, Database } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Input } from '../ui/Input';
@@ -46,7 +46,7 @@ export const RAGSettings = ({
   const [showCrawlingSettings, setShowCrawlingSettings] = useState(false);
   const [showStorageSettings, setShowStorageSettings] = useState(false);
   const { showToast } = useToast();
-  return <Card accentColor="green" className="overflow-hidden p-8">
+  return <Card accentColor="neutral" className="overflow-hidden p-8">
         {/* Description */}
         <p className="text-sm text-gray-600 dark:text-zinc-400 mb-6">
           Configure Retrieval-Augmented Generation (RAG) strategies for optimal
@@ -63,7 +63,7 @@ export const RAGSettings = ({
                 ...ragSettings,
                 LLM_PROVIDER: e.target.value
               })}
-              accentColor="green"
+              accentColor="neutral"
               options={[
                 { value: 'openai', label: 'OpenAI' },
                 { value: 'google', label: 'Google Gemini' },
@@ -81,14 +81,14 @@ export const RAGSettings = ({
                   LLM_BASE_URL: e.target.value
                 })}
                 placeholder="http://localhost:11434/v1"
-                accentColor="green"
+                accentColor="neutral"
               />
             </div>
           )}
           <div className="flex items-end">
             <Button 
               variant="outline" 
-              accentColor="green" 
+              accentColor="neutral" 
               icon={saving ? <Loader className="w-4 h-4 mr-1 animate-spin" /> : <Save className="w-4 h-4 mr-1" />}
               className="w-full whitespace-nowrap"
               size="md"
@@ -122,7 +122,7 @@ export const RAGSettings = ({
                 MODEL_CHOICE: e.target.value
               })} 
               placeholder={getModelPlaceholder(ragSettings.LLM_PROVIDER || 'openai')}
-              accentColor="green" 
+              accentColor="neutral" 
             />
           </div>
           <div>
@@ -134,7 +134,7 @@ export const RAGSettings = ({
                 EMBEDDING_MODEL: e.target.value
               })}
               placeholder={getEmbeddingPlaceholder(ragSettings.LLM_PROVIDER || 'openai')}
-              accentColor="green"
+              accentColor="neutral"
             />
           </div>
         </div>
@@ -167,7 +167,7 @@ export const RAGSettings = ({
                         CONTEXTUAL_EMBEDDINGS_MAX_WORKERS: parseInt(e.target.value, 10) || 3
                       })}
                       className="w-14 h-10 pl-1 pr-7 text-center font-medium rounded-md 
-                        bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-black 
+                        bg-card from-gray-100 to-gray-200 dark:from-gray-900 dark:to-black 
                         border border-green-500/30 
                         text-gray-900 dark:text-white
                         focus:border-green-500 focus:shadow-[0_0_15px_rgba(34,197,94,0.4)]
@@ -184,12 +184,12 @@ export const RAGSettings = ({
                           CONTEXTUAL_EMBEDDINGS_MAX_WORKERS: Math.min(ragSettings.CONTEXTUAL_EMBEDDINGS_MAX_WORKERS + 1, 10)
                         })}
                         className="flex-1 px-1 rounded-t-sm 
-                          bg-gradient-to-b from-green-500/20 to-green-600/10
+                          bg-card from-green-500/20 to-green-600/10
                           hover:from-green-500/30 hover:to-green-600/20
                           border border-green-500/30 border-b-0
                           transition-all duration-200 group"
                       >
-                        <svg className="w-2.5 h-2.5 text-green-500 group-hover:filter group-hover:drop-shadow-[0_0_4px_rgba(34,197,94,0.8)]" 
+                        <svg className="w-2.5 h-2.5 text-green-500 group-hover:filter " 
                           viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M1 5L5 1L9 5" />
                         </svg>
@@ -201,12 +201,12 @@ export const RAGSettings = ({
                           CONTEXTUAL_EMBEDDINGS_MAX_WORKERS: Math.max(ragSettings.CONTEXTUAL_EMBEDDINGS_MAX_WORKERS - 1, 1)
                         })}
                         className="flex-1 px-1 rounded-b-sm 
-                          bg-gradient-to-b from-green-500/20 to-green-600/10
+                          bg-card from-green-500/20 to-green-600/10
                           hover:from-green-500/30 hover:to-green-600/20
                           border border-green-500/30 border-t-0
                           transition-all duration-200 group"
                       >
-                        <svg className="w-2.5 h-2.5 text-green-500 group-hover:filter group-hover:drop-shadow-[0_0_4px_rgba(34,197,94,0.8)]" 
+                        <svg className="w-2.5 h-2.5 text-green-500 group-hover:filter " 
                           viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M1 1L5 5L9 1" />
                         </svg>
@@ -276,11 +276,11 @@ export const RAGSettings = ({
         {/* Crawling Performance Settings */}
         <div className="mt-6">
           <div
-            className="flex items-center justify-between cursor-pointer p-3 rounded-lg border border-green-500/20 bg-gradient-to-r from-green-500/5 to-green-600/5 hover:from-green-500/10 hover:to-green-600/10 transition-all duration-200"
+            className="flex items-center justify-between cursor-pointer p-3 rounded-lg border border-green-500/20 bg-card from-green-500/5 to-green-600/5 hover:from-green-500/10 hover:to-green-600/10 transition-all duration-200"
             onClick={() => setShowCrawlingSettings(!showCrawlingSettings)}
           >
             <div className="flex items-center">
-              <Zap className="mr-2 text-green-500 filter drop-shadow-[0_0_8px_rgba(34,197,94,0.6)]" size={18} />
+              <Zap className="mr-2 text-green-500 filter " size={18} />
               <h3 className="font-semibold text-gray-800 dark:text-white">Crawling Performance Settings</h3>
             </div>
             {showCrawlingSettings ? (
@@ -387,11 +387,11 @@ export const RAGSettings = ({
         {/* Storage Performance Settings */}
         <div className="mt-4">
           <div
-            className="flex items-center justify-between cursor-pointer p-3 rounded-lg border border-green-500/20 bg-gradient-to-r from-green-500/5 to-green-600/5 hover:from-green-500/10 hover:to-green-600/10 transition-all duration-200"
+            className="flex items-center justify-between cursor-pointer p-3 rounded-lg border border-green-500/20 bg-card from-green-500/5 to-green-600/5 hover:from-green-500/10 hover:to-green-600/10 transition-all duration-200"
             onClick={() => setShowStorageSettings(!showStorageSettings)}
           >
             <div className="flex items-center">
-              <Database className="mr-2 text-green-500 filter drop-shadow-[0_0_8px_rgba(34,197,94,0.6)]" size={18} />
+              <Database className="mr-2 text-green-500 filter " size={18} />
               <h3 className="font-semibold text-gray-800 dark:text-white">Storage Performance Settings</h3>
             </div>
             {showStorageSettings ? (
@@ -530,10 +530,10 @@ const CustomCheckbox = ({
         <label 
           htmlFor={id}
           className="relative w-5 h-5 rounded-md transition-all duration-200 cursor-pointer
-            bg-gradient-to-b from-white/80 to-white/60 dark:from-white/5 dark:to-black/40
+            bg-card from-white/80 to-white/60 dark:from-white/5 dark:to-black/40
             border border-gray-300 dark:border-gray-700
             peer-checked:border-green-500 dark:peer-checked:border-green-500/50
-            peer-checked:bg-gradient-to-b peer-checked:from-green-500/20 peer-checked:to-green-600/20
+            peer-checked:bg-card peer-checked:from-green-500/20 peer-checked:to-green-600/20
             group-hover:border-green-500/50 dark:group-hover:border-green-500/30
             peer-checked:shadow-[0_0_10px_rgba(34,197,94,0.2)] dark:peer-checked:shadow-[0_0_15px_rgba(34,197,94,0.3)]"
         >
@@ -555,3 +555,4 @@ const CustomCheckbox = ({
     </div>
   );
 };
+
