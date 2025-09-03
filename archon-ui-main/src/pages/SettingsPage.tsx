@@ -117,7 +117,7 @@ export const SettingsPage = () => {
           className="text-3xl font-bold text-gray-800 dark:text-white flex items-center gap-3"
           variants={titleVariants}
         >
-          <Settings className="w-7 h-7 text-foreground/70" />
+          <Settings className="w-7 h-7 text-green-500 filter drop-shadow-sm" />
           Settings
         </motion.h1>
       </motion.div>

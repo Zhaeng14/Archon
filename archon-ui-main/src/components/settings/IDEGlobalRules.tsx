@@ -30,11 +30,11 @@ export const IDEGlobalRules = () => {
 
 **MANDATORY: Always complete the full Archon specific task cycle before any coding:**
 
-1. **Check Current Task** 鈫?\`archon:manage_task(action="get", task_id="...")\`
-2. **Research for Task** 鈫?\`archon:search_code_examples()\` + \`archon:perform_rag_query()\`
-3. **Implement the Task** 鈫?Write code based on research
-4. **Update Task Status** 鈫?\`archon:manage_task(action="update", task_id="...", update_fields={"status": "review"})\`
-5. **Get Next Task** 鈫?\`archon:manage_task(action="list", filter_by="status", filter_value="todo")\`
+1. **Check Current Task** → \`archon:manage_task(action="get", task_id="...")\`
+2. **Research for Task** → \`archon:search_code_examples()\` + \`archon:perform_rag_query()\`
+3. **Implement the Task** → Write code based on research
+4. **Update Task Status** → \`archon:manage_task(action="update", task_id="...", update_fields={"status": "review"})\`
+5. **Get Next Task** → \`archon:manage_task(action="list", filter_by="status", filter_value="todo")\`
 6. **Repeat Cycle**
 
 **NEVER skip task updates with the Archon MCP server. NEVER code without checking current tasks first.**
@@ -51,7 +51,7 @@ archon:manage_project(
   github_repo="github.com/user/repo-name"
 )
 
-# Research 鈫?Plan 鈫?Create Tasks (see workflow below)
+# Research → Plan → Create Tasks (see workflow below)
 \`\`\`
 
 ### Scenario 2: Existing Project - Adding Archon
@@ -240,7 +240,7 @@ archon:search_code_examples(query="PostgreSQL connection pooling Node.js", match
 ### Task Status Management
 
 **Status Progression:**
-- \`todo\` 鈫?\`doing\` 鈫?\`review\` 鈫?\`done\`
+- \`todo\` → \`doing\` → \`review\` → \`done\`
 - Use \`review\` status for tasks pending validation/testing
 - Use \`archive\` action for tasks no longer relevant
 
@@ -365,16 +365,16 @@ archon:manage_task(
 
 **MANDATORY: Always complete the full Archon task cycle before any coding:**
 
-1. **Check Current Task** 鈫?Review task details and requirements
-2. **Research for Task** 鈫?Search relevant documentation and examples
-3. **Implement the Task** 鈫?Write code based on research
-4. **Update Task Status** 鈫?Move task from "todo" 鈫?"doing" 鈫?"review"
-5. **Get Next Task** 鈫?Check for next priority task
+1. **Check Current Task** → Review task details and requirements
+2. **Research for Task** → Search relevant documentation and examples
+3. **Implement the Task** → Write code based on research
+4. **Update Task Status** → Move task from "todo" → "doing" → "review"
+5. **Get Next Task** → Check for next priority task
 6. **Repeat Cycle**
 
 **Task Management Rules:**
 - Update all actions to Archon
-- Move tasks from "todo" 鈫?"doing" 鈫?"review" (not directly to complete)
+- Move tasks from "todo" → "doing" → "review" (not directly to complete)
 - Maintain task descriptions and add implementation notes
 - DO NOT MAKE ASSUMPTIONS - check project documentation for questions`;
 
@@ -491,7 +491,7 @@ archon:manage_task(
     <Card accentColor="neutral" className="p-8">
       <div className="space-y-6">
         <div className="flex justify-between items-start">
-          <p className="text-sm text-gray-600 dark:text-zinc-400 w-4/5">
+          <p className="text-sm text-gray-600 dark:text-zinc-400 max-w-md">
             Add global rules to your AI assistant to ensure consistent Archon workflow integration.
           </p>
           <Button 
@@ -541,7 +541,7 @@ archon:manage_task(
               {selectedRuleType === 'claude' ? 'Claude Code' : 'Universal Agent'} Rules
             </h3>
           </div>
-          <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-4 custom-scrollbar max-h-96">
             <div className="prose prose-sm dark:prose-invert max-w-none">
               {renderMarkdown(currentRules)}
             </div>
@@ -556,7 +556,7 @@ archon:manage_task(
           <ul className="text-sm text-gray-600 dark:text-gray-400 mt-2 ml-4 list-disc">
             <li><strong>Claude Code:</strong> Create a CLAUDE.md file in your project root</li>
             <li><strong>Gemini CLI:</strong> Create a GEMINI.md file in your project root</li>
-            <li><strong>Cursor:</strong> Create .cursorrules file or add to Settings 鈫?Rules</li>
+            <li><strong>Cursor:</strong> Create .cursorrules file or add to Settings → Rules</li>
             <li><strong>Windsurf:</strong> Create .windsurfrules file in project root</li>
             <li><strong>Other IDEs:</strong> Add to your IDE's AI assistant configuration</li>
           </ul>
@@ -565,5 +565,3 @@ archon:manage_task(
     </Card>
   );
 };
-
-

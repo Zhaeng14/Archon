@@ -148,11 +148,12 @@ export const ModelProviderManager: React.FC<ModelProviderManagerProps> = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Header with Add Button */}
       <div className="flex justify-between items-center">
-        <div className="flex items-center gap-3">
-          <Database className="w-6 h-6 text-blue-500" />
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Model Providers</h2>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            {providers.length} providers configured
+          </span>
         </div>
         <Button
           variant="primary"
@@ -174,165 +175,163 @@ export const ModelProviderManager: React.FC<ModelProviderManagerProps> = () => {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        {/* Providers Panel */}
-        <Card accentColor="neutral" className="p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-            <Settings className="w-5 h-5" />
+      {/* Providers List */}
+      <Card accentColor="neutral" className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <Settings className="w-5 h-5 text-green-500 filter" />
             Providers
-            <span className="ml-auto text-sm text-gray-500 dark:text-gray-400">
-              {providers.length} configured
-            </span>
           </h3>
-          
-          <div className="space-y-3">
-            {providers.map((provider) => (
-              <div
-                key={provider.id}
-                className={`p-4 rounded-lg border transition-all cursor-pointer ${
-                  selectedProvider === provider.id
-                    ? 'border-border bg-muted'
-                    : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
-                }`}
-                onClick={() => setSelectedProvider(provider.id)}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <h4 className="font-medium">{provider.display_name}</h4>
-                      {provider.requires_api_key && (
-                        <Lock className={`w-4 h-4 ${provider.has_api_key ? 'text-green-500' : 'text-red-500'}`} />
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 truncate" title={provider.base_url}>
-                      {provider.base_url}
-                    </p>
-                    {provider.description && (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 mt-1 truncate" title={provider.description}>
-                        {provider.description}
-                      </p>
+        </div>
+        
+        <div className="space-y-3">
+          {providers.map((provider) => (
+            <div
+              key={provider.id}
+              className={`p-4 rounded-lg border transition-all cursor-pointer ${
+                selectedProvider === provider.id
+                  ? 'border-border bg-muted'
+                  : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+              }`}
+              onClick={() => setSelectedProvider(provider.id)}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-medium">{provider.display_name}</h4>
+                    {provider.requires_api_key && (
+                      <Lock className={`w-4 h-4 ${provider.has_api_key ? 'text-green-500' : 'text-red-500'}`} />
                     )}
                   </div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setEditingProvider(provider);
-                      }}
-                      className="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                    >
-                      <Edit3 className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleProviderDelete(provider.id);
-                      }}
-                      className="p-1.5 rounded hover:bg-red-100 dark:hover:bg-red-900/20 text-red-600 transition-colors"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 truncate" title={provider.base_url}>
+                    {provider.base_url}
+                  </p>
+                  {provider.description && (
+                    <p className="text-xs text-gray-400 dark:text-gray-500 mt-1 truncate" title={provider.description}>
+                      {provider.description}
+                    </p>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setEditingProvider(provider);
+                    }}
+                    className="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <Edit3 className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleProviderDelete(provider.id);
+                    }}
+                    className="p-1.5 rounded hover:bg-red-100 dark:hover:bg-red-900/20 text-red-600 transition-colors"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
-        </Card>
+            </div>
+          ))}
+        </div>
+      </Card>
 
-        {/* Models Panel */}
+      {/* Models Section */}
+      {selectedProvider && (
         <Card accentColor="neutral" className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Database className="w-5 h-5" />
+              <Database className="w-5 h-5 text-green-500 filter" />
               Models {selectedProviderData && `- ${selectedProviderData.display_name}`}
             </h3>
-            {selectedProvider && (
-              <Button
-                variant="outline"
-                onClick={() => setEditingModel({
-                  id: '',
-                  provider_id: selectedProvider,
-                  model_id: '',
-                  model_name: '',
-                  model_type: 'chat',
-                  is_default: false,
-                  is_active: true,
-                  max_tokens: null,
-                  description: ''
-                })}
-                accentColor="neutral"
-                size="sm"
-              >
-                <Plus className="w-3 h-3 mr-1" />
-                Add Model
-              </Button>
-            )}
+            <Button
+              variant="outline"
+              onClick={() => setEditingModel({
+                id: '',
+                provider_id: selectedProvider,
+                model_id: '',
+                model_name: '',
+                model_type: 'chat',
+                is_default: false,
+                is_active: true,
+                max_tokens: null,
+                description: ''
+              })}
+              accentColor="neutral"
+              size="sm"
+            >
+              <Plus className="w-3 h-3 mr-1" />
+              Add Model
+            </Button>
           </div>
 
-          {selectedProvider ? (
-            <div className="space-y-3">
-              {['chat', 'embedding'].map((type) => {
-                const typeModels = selectedProviderModels.filter(m => m.model_type === type);
-                if (typeModels.length === 0) return null;
+          <div className="space-y-3">
+            {['chat', 'embedding'].map((type) => {
+              const typeModels = selectedProviderModels.filter(m => m.model_type === type);
+              if (typeModels.length === 0) return null;
 
-                return (
-                  <div key={type} className="space-y-2">
-                    <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wide">
-                      {type} Models
-                    </h4>
-                    {typeModels.map((model) => (
-                      <div key={model.id} className="p-3 rounded-lg border border-border bg-card">
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2">
-                              <span className="font-medium">{model.model_name}</span>
-                              {model.is_default && (
-                                <span className="px-2 py-0.5 text-xs rounded-full border border-border text-foreground/70">
-                                  Default
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">{model.model_id}</p>
-                            {model.max_tokens && (
-                              <p className="text-xs text-gray-400 dark:text-gray-500">
-                                Max tokens: {model.max_tokens.toLocaleString()}
-                              </p>
+              return (
+                <div key={type} className="space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                    {type} Models
+                  </h4>
+                  {typeModels.map((model) => (
+                    <div key={model.id} className="p-3 rounded-lg border border-border bg-card">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium">{model.model_name}</span>
+                            {model.is_default && (
+                              <span className="px-2 py-0.5 text-xs rounded-full border border-border text-foreground/70">
+                                Default
+                              </span>
                             )}
                           </div>
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => setEditingModel(model)}
-                              className="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                            >
-                              <Edit3 className="w-3 h-3" />
-                            </button>
-                            <button
-                              onClick={() => handleModelDelete(model.provider_id, model.id)}
-                              className="p-1.5 rounded hover:bg-red-100 dark:hover:bg-red-900/20 text-red-600 transition-colors"
-                            >
-                              <Trash2 className="w-3 h-3" />
-                            </button>
-                          </div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">{model.model_id}</p>
+                          {model.max_tokens && (
+                            <p className="text-xs text-gray-400 dark:text-gray-500">
+                              Max tokens: {model.max_tokens.toLocaleString()}
+                            </p>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setEditingModel(model)}
+                            className="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                          >
+                            <Edit3 className="w-3 h-3" />
+                          </button>
+                          <button
+                            onClick={() => handleModelDelete(model.provider_id, model.id)}
+                            className="p-1.5 rounded hover:bg-red-100 dark:hover:bg-red-900/20 text-red-600 transition-colors"
+                          >
+                            <Trash2 className="w-3 h-3" />
+                          </button>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                );
-              })}
-              
-              {selectedProviderModels.length === 0 && (
-                <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-                  No models configured for this provider
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
-          ) : (
-            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-              Select a provider to view models
-            </div>
-          )}
+              );
+            })}
+            
+            {selectedProviderModels.length === 0 && (
+              <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+                No models configured for this provider
+              </div>
+            )}
+          </div>
         </Card>
-      </div>
+      )}
+
+      {/* Empty State */}
+      {!selectedProvider && providers.length > 0 && (
+        <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+          Select a provider above to view and manage models
+        </div>
+      )}
 
       {/* Provider Edit Modal */}
       {editingProvider && (
@@ -574,4 +573,3 @@ const ModelEditModal: React.FC<ModelEditModalProps> = ({ model, onSave, onCancel
     </motion.div>
   );
 };
-

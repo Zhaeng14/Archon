@@ -557,8 +557,8 @@ export const MCPPage = () => {
                     </div>
                     
                     {/* Note about universal MCP compatibility */}
-                    <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                      <p className="text-xs text-blue-700 dark:text-blue-300">
+                    <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
+                      <p className="text-xs text-orange-800 dark:text-orange-200">
                         <span className="font-semibold">Note:</span> Archon works with any application that supports MCP. 
                         Below are instructions for common tools, but these steps can be adapted for any MCP-compatible client.
                       </p>
@@ -776,5 +776,3 @@ export const MCPPage = () => {
     </motion.div>
   );
 };
-
-

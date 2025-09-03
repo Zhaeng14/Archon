@@ -177,9 +177,9 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
       <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50">
         <SideNavigation />
       </div>
-      {/* Main Content Area - no left margin to allow grid to extend full width */}
+      {/* Main Content Area - with reasonable max width for better readability */}
       <div className="relative flex-1 pl-[100px] z-10">
-        <div className="w-full max-w-none px-6 relative">
+        <div className="w-full max-w-7xl mx-auto px-6 relative">
           <div className="min-h-screen pt-8 pb-16">{children}</div>
         </div>
       </div>

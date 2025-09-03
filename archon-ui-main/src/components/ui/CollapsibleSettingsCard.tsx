@@ -54,13 +54,13 @@ export const CollapsibleSettingsCard: React.FC<CollapsibleSettingsCardProps> = (
   };
 
   const iconColorMap = {
-    neutral: 'text-foreground/70',
-    purple: 'text-gray-600 dark:text-gray-400',
-    green: 'text-gray-600 dark:text-gray-400', 
-    pink: 'text-gray-600 dark:text-gray-400',
-    blue: 'text-gray-600 dark:text-gray-400',
-    cyan: 'text-gray-600 dark:text-gray-400',
-    orange: 'text-gray-600 dark:text-gray-400'
+    neutral: 'text-green-500 filter',
+    purple: 'text-green-500 filter',
+    green: 'text-green-500 filter', 
+    pink: 'text-green-500 filter',
+    blue: 'text-green-500 filter',
+    cyan: 'text-green-500 filter',
+    orange: 'text-green-500 filter'
   };
 
   return (
@@ -127,4 +127,3 @@ export const CollapsibleSettingsCard: React.FC<CollapsibleSettingsCardProps> = (
     </motion.div>
   );
 };
-
