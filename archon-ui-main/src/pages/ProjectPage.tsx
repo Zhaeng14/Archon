@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../contexts/ToastContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,21 +10,19 @@ import { DocsTab } from '../components/project-tasks/DocsTab';
 import { TasksTab } from '../components/project-tasks/TasksTab';
 import { Button } from '../components/ui/Button';
 import { ChevronRight, ShoppingCart, Code, Briefcase, Layers, Plus, X, AlertCircle, Loader2, Heart, BarChart3, Trash2, Pin, ListTodo, Activity, CheckCircle2, Clipboard } from 'lucide-react';
+=======
+import { ProjectsViewWithBoundary } from '../features/projects';
+>>>>>>> 012d2c58ed406bb025728d1d6fd24cf9e550743e
 
-// Import our service layer and types
-import { projectService } from '../services/projectService';
-import type { Project, CreateProjectRequest } from '../types/project';
-import type { Task } from '../components/project-tasks/TaskTableView';
-import { ProjectCreationProgressCard } from '../components/ProjectCreationProgressCard';
-import { projectCreationProgressService } from '../services/projectCreationProgressService';
-import type { ProjectCreationProgressData } from '../services/projectCreationProgressService';
-import { projectListSocketIO, taskUpdateSocketIO } from '../services/socketIOService';
+// Minimal wrapper for routing compatibility
+// All implementation is in features/projects/views/ProjectsView.tsx
+// Uses ProjectsViewWithBoundary for proper error handling
 
-interface ProjectPageProps {
-  className?: string;
-  'data-id'?: string;
+function ProjectPage(props: any) {
+  return <ProjectsViewWithBoundary {...props} />;
 }
 
+<<<<<<< HEAD
 // Icon mapping for projects (since database stores icon names as strings)
 const getProjectIcon = (iconName?: string) => {
   const iconMap = {
@@ -1131,3 +1130,6 @@ export const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({ itemName
   );
 };
 
+=======
+export { ProjectPage };
+>>>>>>> 012d2c58ed406bb025728d1d6fd24cf9e550743e

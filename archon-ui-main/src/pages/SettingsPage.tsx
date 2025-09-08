@@ -7,7 +7,6 @@ import {
   Palette,
   Brain,
   Code,
-  Activity,
   FileCode,
   Bug,
   Database,
@@ -20,7 +19,6 @@ import { FeaturesSection } from "../components/settings/FeaturesSection";
 import { FlexibleRAGSettings } from "../components/settings/FlexibleRAGSettings";
 import { ModelProviderManager } from "../components/settings/ModelProviderManager";
 import { CodeExtractionSettings } from "../components/settings/CodeExtractionSettings";
-import { TestStatus } from "../components/settings/TestStatus";
 import { IDEGlobalRules } from "../components/settings/IDEGlobalRules";
 import { ButtonPlayground } from "../components/settings/ButtonPlayground";
 import { CollapsibleSettingsCard } from "../components/ui/CollapsibleSettingsCard";
@@ -151,17 +149,6 @@ export const SettingsPage = () => {
               </CollapsibleSettingsCard>
             </motion.div>
           )}
-          <motion.div variants={itemVariants}>
-            <CollapsibleSettingsCard
-              title="Test Status"
-              icon={Activity}
-              accentColor="cyan"
-              storageKey="test-status"
-              defaultExpanded={true}
-            >
-              <TestStatus />
-            </CollapsibleSettingsCard>
-          </motion.div>
         </div>
 
         {/* Right Column */}
@@ -217,8 +204,7 @@ export const SettingsPage = () => {
             >
               <div className="space-y-4">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Found a bug or issue? Report it to help improve Archon V2
-                  Alpha.
+                  Found a bug or issue? Report it to help improve Archon Beta.
                 </p>
                 <div className="flex justify-start">
                   <BugReportButton variant="secondary" size="md">

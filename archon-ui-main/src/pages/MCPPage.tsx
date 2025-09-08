@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿import { useState, useEffect, useRef } from 'react';
 import { Play, Square, Copy, Clock, Server, AlertCircle, CheckCircle, Loader } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -8,35 +9,12 @@ import { useToast } from '../contexts/ToastContext';
 import { mcpServerService, ServerStatus, LogEntry, ServerConfig } from '../services/mcpServerService';
 import { IDEGlobalRules } from '../components/settings/IDEGlobalRules';
 // import { MCPClients } from '../components/mcp/MCPClients'; // Commented out - feature not implemented
+=======
+import { McpViewWithBoundary } from '../features/mcp';
+>>>>>>> 012d2c58ed406bb025728d1d6fd24cf9e550743e
 
-// Supported IDE/Agent types
-type SupportedIDE = 'windsurf' | 'cursor' | 'claudecode' | 'cline' | 'kiro' | 'augment' | 'gemini';
-
-/**
- * MCP Dashboard Page Component
- * 
- * This is the main dashboard for managing the MCP (Model Context Protocol) server.
- * It provides a comprehensive interface for:
- * 
- * 1. Server Control Tab:
- *    - Start/stop the MCP server
- *    - Monitor server status and uptime
- *    - View and copy connection configuration
- *    - Real-time log streaming via WebSocket
- *    - Historical log viewing and clearing
- * 
- * 2. MCP Clients Tab:
- *    - Interactive client management interface
- *    - Tool discovery and testing
- *    - Real-time tool execution
- *    - Parameter input and result visualization
- * 
- * The page uses a tab-based layout with preserved server functionality
- * and enhanced client management capabilities.
- * 
- * @component
- */
 export const MCPPage = () => {
+<<<<<<< HEAD
   const [serverStatus, setServerStatus] = useState<ServerStatus>({
     status: 'stopped',
     uptime: null,
@@ -776,3 +754,7 @@ export const MCPPage = () => {
     </motion.div>
   );
 };
+=======
+  return <McpViewWithBoundary />;
+};
+>>>>>>> 012d2c58ed406bb025728d1d6fd24cf9e550743e
